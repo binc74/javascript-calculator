@@ -7,14 +7,22 @@ function registerNumButtons(numberArea, view) {
 		view.updateNumberView();		
 	};	
 	
-	
-	
+	// get all the button tags with class "number"
 	var elementList = document.getElementsByClassName("number");
 	
-	for (let i = 0; i < elementList.length; ++i)
+	// register functions for these buttons
+	for (var i = 0; i < elementList.length; ++i)
 		elementList[i].addEventListener("click", appendNum, false);
 }
+
+function registerOpButtons() {
+	var elementList = document.getElementsByClassName("op");
+}
+
+function registerFuncButtons() {
 	
+}
+
 function registerButtons(numberArea, resultArea, view) {
 	registerNumButtons(numberArea, view);
 }

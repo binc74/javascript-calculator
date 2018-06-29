@@ -23,3 +23,8 @@ View.prototype.updateNumberView = function () {
  */
 View.prototype.updateResultView = function () {
 }
+
+View.prototype.initialize = function () {
+	this.updateNumberView();
+	this.updateResultView();
+}

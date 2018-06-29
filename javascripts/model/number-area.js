@@ -1,28 +1,53 @@
 // Created by Bin Chen 6/28/2018
 // Modified by Bin Chen 6/28/2018 - Implemented the NumberArea, append, submitNumber and toString functions
-// Modified by Bin Chen 6/29/2018 - restructure the files
+// Modified by Bin Chen 6/29/2018 - change the data from list to string
 
 function NumberArea(resultArea) {
-	this.data = [];
+	this.data = "0";
 	this.resultArea = resultArea;
+	this.hasPeriod = false;
 }
 
 NumberArea.prototype.append = function (num) {
-	this.data.push(parseInt(num));
-}
-
-NumberArea.prototype.submitNumber = function () {
-	// merge the numbers in the data list and push the number into the list in resultArea 
-	this.resultArea.data.push(this.data.reduce(function (a, b) {
-		return a * 10 + b;
-	}, 0));
-	
-	// empty the data list
-	this.data.length = 0;
+	if (this.data == "0" && num != ".") {
+		this.data = num;		
+	} else {
+		if (num == ".")
+			this.hasPeriod = true;
+		
+		this.data += num;
+	}
 }
 
 NumberArea.prototype.toString = function() {
-	return this.data.reduce(function (a, b) {
-		return a + b.toString();
-	}, "");
+	var res = "";
+	var metPeriod = false || !this.hasPeriod;
+	var count = 0;
+	
+	for (var i = this.data.length - 1; i > -1; --i) {
+		var c = this.data[i];
+		
+		if (!metPeriod) {
+			if (c == '.')
+				metPeriod = true;
+			
+			res = c + res;			
+		} else if (i != 0 && ++count % 3 == 0) {
+			res = "," + c + res;
+		} else {
+			res = c + res;
+		}
+	}
+	
+	return res;
 }
+
+NumberArea.prototype.submitNumber = function () {
+	alert();
+	// merge the numbers in the data list and push the number into the list in resultArea 
+	this.resultArea.data.push(parseFloat(this.data));
+	
+	// initialize the data list
+	this.data = "0";
+}
+
