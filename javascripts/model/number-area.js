@@ -35,7 +35,7 @@ NumberArea.prototype.toString = function() {
 			if (c == '.')
 				metPeriod = true;
 			
-			res = c + res;			
+			res = c + res;
 		} else if (i != 0 && ++count % 3 == 0) {
 			res = "," + c + res;
 		} else {
