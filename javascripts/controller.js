@@ -20,7 +20,7 @@ function registerOpButtons(numberArea, stagingArea, view) {
 	var appendOp = function () {
 		numberArea.submitNumber();
 		stagingArea.append(this.value);
-		view.updateResultView();
+		view.updateFinalView();
 	};
 	
 	// get all the button tags with class "op"

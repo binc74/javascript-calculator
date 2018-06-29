@@ -16,17 +16,17 @@ function View(numberArea, stagingArea, finalArea, numberAreaId, finalAreaId) {
  * update the number area's view
  */
 View.prototype.updateNumberView = function () {
-	document.getElementById(this.numberAreaId).innerHTML = this.numberArea.toString();	
+	var str = this.numberArea.toString();
+	document.getElementById(this.numberAreaId).innerHTML = str == "" ? "0" : str;
 }
 
 /**
  * update the result area's view
  */
-View.prototype.updateResultView = function () {
+View.prototype.updateFinalView = function () {
 	document.getElementById(this.finalAreaId).innerHTML = this.finalArea.toString() + this.stagingArea.toString();	
 }
 
 View.prototype.initialize = function () {
 	this.updateNumberView();
-	this.updateResultView();
 }

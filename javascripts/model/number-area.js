@@ -3,7 +3,7 @@
 // Modified by Bin Chen 6/29/2018 - change the data from list to string
 
 function NumberArea() {
-	this.data = "0";
+	this.data = "";
 	this.stagingArea = null;
 	this.hasPeriod = false;
 }
@@ -12,10 +12,8 @@ NumberArea.prototype.setStagingArea = function (stagingArea) {
 	this.stagingArea = stagingArea;
 }
 
-NumberArea.prototype.append = function (num) {
-	if (this.data == "0" && num != ".") {
-		this.data = num;		
-	} else if (num == ".") {
+NumberArea.prototype.append = function (num) {	
+	if (num == ".") {
 		if (!this.hasPeriod) {
 			this.data += num;
 			this.hasPeriod = true;			
@@ -45,6 +43,9 @@ NumberArea.prototype.toString = function() {
 		}
 	}
 	
+	if (res[0] == '.')
+		res = "0" + res;
+	
 	return res;
 }
 
@@ -53,6 +54,7 @@ NumberArea.prototype.submitNumber = function () {
 	this.stagingArea.append(parseFloat(this.data));
 	
 	// initialize the data list
-	this.data = "0";
+	this.data = ""
+	this.hasPeriod = false;
 }
 

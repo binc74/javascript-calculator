@@ -5,11 +5,15 @@ function FinalArea() {
 	this.numberArea = null;
 }
 
-ResultArea.prototype.setNumberArea = function (numberArea) {
+FinalArea.prototype.setNumberArea = function (numberArea) {
 	this.numberArea = numberArea;
 }
 
-ResultArea.prototype.toString = function() {
+FinalArea.prototype.append = function (ele) {
+	this.data.push(ele);
+}
+
+FinalArea.prototype.toString = function() {
 	return this.data.reduce(function (a, b) {
 		return a + b.toString();
 	}, "");
