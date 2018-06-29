@@ -16,11 +16,14 @@ function registerNumButtons(numberArea, view) {
 		numberButtonList[i].addEventListener("click", appendNum, false);
 }
 
-function registerOpButtons(numberArea, stagingArea, view) {
+function registerOpButtons(numberArea, stagingArea, finalArea, view) {
 	var appendOp = function () {
 		numberArea.submitNumber();
 		stagingArea.append(this.value);
+		finalArea.calculate();
+		
 		view.updateFinalView();
+		view.updateNumberView();
 	};
 	
 	// get all the button tags with class "op"
@@ -37,5 +40,5 @@ function registerFuncButtons() {
 
 function registerButtons(numberArea, stagingArea, finalArea, view) {
 	registerNumButtons(numberArea, view);
-	registerOpButtons(numberArea, stagingArea, view);
+	registerOpButtons(numberArea, stagingArea, finalArea, view);
 }

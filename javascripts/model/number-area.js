@@ -6,6 +6,7 @@ function NumberArea() {
 	this.data = "";
 	this.stagingArea = null;
 	this.hasPeriod = false;
+	this.shouldClear = true;
 }
 
 NumberArea.prototype.setStagingArea = function (stagingArea) {
@@ -13,6 +14,12 @@ NumberArea.prototype.setStagingArea = function (stagingArea) {
 }
 
 NumberArea.prototype.append = function (num) {	
+	if (this.shouldClear) {
+		this.stagingArea.clear();
+		this.data = "";
+		this.hasPeriod = false;
+	}
+
 	if (num == ".") {
 		if (!this.hasPeriod) {
 			this.data += num;
@@ -21,6 +28,8 @@ NumberArea.prototype.append = function (num) {
 	} else {		
 		this.data += num;
 	}
+	
+	this.shouldClear = false;
 }
 
 NumberArea.prototype.toString = function() {
@@ -54,7 +63,10 @@ NumberArea.prototype.submitNumber = function () {
 	this.stagingArea.append(parseFloat(this.data));
 	
 	// initialize the data list
-	this.data = ""
-	this.hasPeriod = false;
+	this.shouldClear = true;
 }
 
+NumberArea.prototype.setResult = function (result) {
+	this.data = result.toString();
+	this.shouldClear = true;
+}

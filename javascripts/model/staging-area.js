@@ -1,4 +1,5 @@
 // Created by Bin Chen 6/29/2018
+// Implemented by Bin Chen 6/29/2018 - Implement StagingArea and four of its prototype funtions
 
 function StagingArea() {
 	this.data = [];
@@ -27,11 +28,12 @@ StagingArea.prototype.append = function (op) {
 }
 
 StagingArea.prototype.clear = function () {
-	this.data.length = 0;
+	if (this.data.length > 0 && !this.opSet.has(this.data[0]))
+		this.data.length = 0;
 }
 
 StagingArea.prototype.toString = function() {
 	return this.data.reduce(function (a, b) {
-		return a + b.toString();
+		return a + b.toString() + " ";
 	}, "");
 }
