@@ -4,12 +4,12 @@
 /**
  * 
  */
-function View(numberArea, stagingArea, resultArea, numberAreaId, resultAreaId) {
+function View(numberArea, stagingArea, finalArea, numberAreaId, finalAreaId) {
 	this.numberArea = numberArea;
 	this.stagingArea = stagingArea;
-	this.resultArea = resultArea;
+	this.finalArea = finalArea;
 	this.numberAreaId = numberAreaId;
-	this.resultAreaId = resultAreaId;
+	this.finalAreaId = finalAreaId;
 }
 
 /**
@@ -23,7 +23,7 @@ View.prototype.updateNumberView = function () {
  * update the result area's view
  */
 View.prototype.updateResultView = function () {
-	document.getElementById(this.resultAreaId).innerHTML = this.resultArea.toString() + this.stagingArea.toString();	
+	document.getElementById(this.finalAreaId).innerHTML = this.finalArea.toString() + this.stagingArea.toString();	
 }
 
 View.prototype.initialize = function () {

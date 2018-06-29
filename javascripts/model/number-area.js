@@ -15,10 +15,12 @@ NumberArea.prototype.setStagingArea = function (stagingArea) {
 NumberArea.prototype.append = function (num) {
 	if (this.data == "0" && num != ".") {
 		this.data = num;		
-	} else {
-		if (num == ".")
-			this.hasPeriod = true;
-		
+	} else if (num == ".") {
+		if (!this.hasPeriod) {
+			this.data += num;
+			this.hasPeriod = true;			
+		}
+	} else {		
 		this.data += num;
 	}
 }
@@ -48,7 +50,7 @@ NumberArea.prototype.toString = function() {
 
 NumberArea.prototype.submitNumber = function () {
 	// merge the numbers in the data list and push the number into the list in resultArea 
-	this.stagingArea.data.push(parseFloat(this.data));
+	this.stagingArea.append(parseFloat(this.data));
 	
 	// initialize the data list
 	this.data = "0";

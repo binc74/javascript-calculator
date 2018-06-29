@@ -4,15 +4,15 @@
 		<meta charset="utf-8">
 		<link href="stylesheets/style.css" rel="stylesheet" />
 		<script src="javascripts/model/number-area.js"></script>
-		<script src="javascripts/model/result-area.js"></script>
+		<script src="javascripts/model/final-area.js"></script>
 		<script src="javascripts/model/staging-area.js"></script>
 		<script src="javascripts/controller.js"></script>
 		<script src="javascripts/view.js"></script>
 	</head>	
 	<body>
 		<div>
-			<div id="result" />
-			<div id="input" />
+			<p id="result" />
+			<p id="input" />
 		</div>
 		<table>
 			<tr>
@@ -50,14 +50,14 @@
 	<script>		
 	var numberArea = new NumberArea();
 	var stagingArea = new StagingArea();
-	var resultArea = new ResultArea();
+	var finalArea = new FinalArea();
 	numberArea.setStagingArea(stagingArea);
-	stagingArea.setResultArea(resultArea);
-	resultArea.setNumberArea(numberArea);
+	stagingArea.setResultArea(finalArea);
+	finalArea.setNumberArea(numberArea);
 	
-	var view = new View(numberArea, stagingArea, resultArea, "input", "result");
-
-	view.initialize();
-	registerButtons(numberArea, resultArea, view);
+	var view = new View(numberArea, stagingArea, finalArea, "input", "result");
+	registerButtons(numberArea, stagingArea, finalArea, view);
+	
+	view.initialize();	
 	</script>
 </html>
