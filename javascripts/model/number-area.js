@@ -1,7 +1,6 @@
 // Created by Bin Chen 6/28/2018
-// Modified by Bin Chen 6/28/2018 - Implemented the NumberArea, append, submitNumber, toString and ResultArea functions
-
-// For the number area
+// Modified by Bin Chen 6/28/2018 - Implemented the NumberArea, append, submitNumber and toString functions
+// Modified by Bin Chen 6/29/2018 - restructure the files
 
 function NumberArea(resultArea) {
 	this.data = [];
@@ -26,10 +25,4 @@ NumberArea.prototype.toString = function() {
 	return this.data.reduce(function (a, b) {
 		return a + b.toString();
 	}, "");
-}
-
-// For the result area
-
-function ResultArea() {
-	this.data = [];
 }

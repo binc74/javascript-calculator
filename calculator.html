@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<link href="stylesheets/style.css" rel="stylesheet" />
-		<script src="javascripts/model.js"></script>
+		<script src="javascripts/model/number-area.js"></script>
+		<script src="javascripts/model/result-area.js"></script>
+		<script src="javascripts/model/staging-area.js"></script>
 		<script src="javascripts/controller.js"></script>
 		<script src="javascripts/view.js"></script>
 	</head>	
@@ -14,34 +16,34 @@
 		</div>
 		<table>
 			<tr>
-				<td><button class="" value="CE" type="button">CE</button></td>
-				<td><button class="" value="C" type="button">C</button></td>
-				<td><button class="" value="back" type="button">back</button></td>
-				<td><button class="" value="div" type="button">/</button></td>
+				<td><button class="func" value="CE" type="button">CE</button></td>
+				<td><button class="func" value="C" type="button">C</button></td>
+				<td><button class="func" value="back" type="button">back</button></td>
+				<td><button class="op" value="div" type="button">/</button></td>
 			</tr>
 			<tr>
 				<td><button class="number" value="7" type="button">7</button></td>
 				<td><button class="number" value="8" type="button">8</button></td>
 				<td><button class="number" value="9" type="button">9</button></td>
-				<td><button class="" value="x" type="button">x</button></td>
+				<td><button class="op" value="x" type="button">x</button></td>
 			</tr>
 			<tr>
 				<td><button class="number" value="4" type="button">4</button></td>
 				<td><button class="number" value="5" type="button">5</button></td>
 				<td><button class="number" value="6" type="button">6</button></td>
-				<td><button class="" value="-" type="button">-</button></td>
+				<td><button class="op" value="-" type="button">-</button></td>
 			</tr>
 			<tr>
 				<td><button class="number" value="1" type="button">1</button></td>
 				<td><button class="number" value="2" type="button">2</button></td>
 				<td><button class="number" value="3" type="button">3</button></td>
-				<td><button class="" value="+" type="button">+</button></td>
+				<td><button class="op" value="+" type="button">+</button></td>
 			</tr>			
 			<tr>
-				<td><button class="" value="neg" type="button">negate</button></td>
+				<td><button class="op" value="neg" type="button">negate</button></td>
 				<td><button class="number" value="0" type="button">0</button></td>
-				<td><button class="" value="." type="button">.</button></td>
-				<td><button class="" value="=" type="button">=</button></td>
+				<td><button class="number" value="." type="button">.</button></td>
+				<td><button class="func" value="=" type="button">=</button></td>
 			</tr>
 		</table>
 	</body>
