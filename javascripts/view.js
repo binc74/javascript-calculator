@@ -4,8 +4,9 @@
 /**
  * 
  */
-function View(numberArea, resultArea, numberAreaId, resultAreaId) {
+function View(numberArea, stagingArea, resultArea, numberAreaId, resultAreaId) {
 	this.numberArea = numberArea;
+	this.stagingArea = stagingArea;
 	this.resultArea = resultArea;
 	this.numberAreaId = numberAreaId;
 	this.resultAreaId = resultAreaId;
@@ -22,6 +23,7 @@ View.prototype.updateNumberView = function () {
  * update the result area's view
  */
 View.prototype.updateResultView = function () {
+	document.getElementById(this.resultAreaId).innerHTML = this.resultArea.toString() + this.stagingArea.toString();	
 }
 
 View.prototype.initialize = function () {

@@ -16,6 +16,11 @@ function registerNumButtons(numberArea, view) {
 }
 
 function registerOpButtons() {
+	var appendNum = function () {
+		numberArea.append(this.value);	
+		view.updateNumberView();		
+	};
+	
 	var elementList = document.getElementsByClassName("op");
 }
 

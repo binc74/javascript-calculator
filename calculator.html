@@ -48,9 +48,14 @@
 		</table>
 	</body>
 	<script>		
+	var numberArea = new NumberArea();
+	var stagingArea = new StagingArea();
 	var resultArea = new ResultArea();
-	var numberArea = new NumberArea(resultArea);		
-	var view = new View(numberArea, resultArea, "input", "result");
+	numberArea.setStagingArea(stagingArea);
+	stagingArea.setResultArea(resultArea);
+	resultArea.setNumberArea(numberArea);
+	
+	var view = new View(numberArea, stagingArea, resultArea, "input", "result");
 
 	view.initialize();
 	registerButtons(numberArea, resultArea, view);

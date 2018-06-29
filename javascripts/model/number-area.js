@@ -2,10 +2,14 @@
 // Modified by Bin Chen 6/28/2018 - Implemented the NumberArea, append, submitNumber and toString functions
 // Modified by Bin Chen 6/29/2018 - change the data from list to string
 
-function NumberArea(resultArea) {
+function NumberArea() {
 	this.data = "0";
-	this.resultArea = resultArea;
+	this.stagingArea = null;
 	this.hasPeriod = false;
+}
+
+NumberArea.prototype.setStagingArea = function (stagingArea) {
+	this.stagingArea = stagingArea;
 }
 
 NumberArea.prototype.append = function (num) {
@@ -43,9 +47,8 @@ NumberArea.prototype.toString = function() {
 }
 
 NumberArea.prototype.submitNumber = function () {
-	alert();
 	// merge the numbers in the data list and push the number into the list in resultArea 
-	this.resultArea.data.push(parseFloat(this.data));
+	this.stagingArea.data.push(parseFloat(this.data));
 	
 	// initialize the data list
 	this.data = "0";
