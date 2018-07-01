@@ -6,7 +6,7 @@ function InputArea() {
 	this.data = "";
 	this.stagingArea = null;
 	this.hasPeriod = false;
-	this.isResult = false;
+	this.haveSubmitted = false;
 }
 
 InputArea.prototype.setStagingArea = function (stagingArea) {
@@ -14,7 +14,7 @@ InputArea.prototype.setStagingArea = function (stagingArea) {
 }
 
 InputArea.prototype.push = function (num) {	
-	if (this.isResult) {
+	if (this.haveSubmitted) {
 		this.stagingArea.clear();
 		this.data = "";
 		this.hasPeriod = false;
@@ -29,7 +29,7 @@ InputArea.prototype.push = function (num) {
 		this.data += num;
 	}
 	
-	this.isResult = false;
+	this.haveSubmitted = false;
 }
 
 InputArea.prototype.toString = function() {
@@ -52,22 +52,20 @@ InputArea.prototype.toString = function() {
 		}
 	}
 	
-	if (res[0] == '.')
+	if (res[0] == '.' || res.length == 0)
 		res = "0" + res;
 	
 	return res;
 }
 
-InputArea.prototype.process = function (op) {
-	if (Consts.OP_SET.has(op) && !this.isResult)
+InputArea.prototype.submit = function () {
+	//if (Consts.OP_SET.has(op) && !this.haveSubmitted)
+	if (!this.haveSubmitted)
 		this.stagingArea.push(this.data.length == 0 ? 0 : parseFloat(this.data));
 	
-	this.isResult = true;
+	this.haveSubmitted = true;
 }
 
 InputArea.prototype.setResult = function (result) {
-	if (this.isResult)
-		this.data = result.toString();
-	
-	this.isResult = true;
+	this.data = result.toString();
 }

@@ -17,7 +17,7 @@ CalculatorModel.prototype.addNumber = function(num) {
 }
 
 CalculatorModel.prototype.addOperator = function(op) {	
-	this.inputArea.process(op);	
+	this.inputArea.submit();	
 	this.stagingArea.setOperator(op);
 	
 	this.inputArea.setResult(this.stagingArea.calculate());
@@ -30,10 +30,12 @@ CalculatorModel.prototype.getNumberString = function() {
 }
 
 CalculatorModel.prototype.startParan = function () {
+	console.log("start paran");
 	this.inputArea.setResult(this.stagingArea.startParan());
 }
 
 CalculatorModel.prototype.endParan = function () {
+	this.inputArea.submit();
 	this.inputArea.setResult(this.stagingArea.endParan());
 }
 

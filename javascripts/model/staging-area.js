@@ -12,19 +12,18 @@ StagingArea.prototype.setFinalArea = function (finalArea) {
 	this.finalArea = finalArea;
 }
 
-StagingArea.prototype.submit = function () {
-	for (var i = 0; i < this.data.length; ++i)
-		this.finalArea.push(this.data[i]);
-	
-	this.data.length = 0;
+StagingArea.prototype.submit = function (index) {
+	for (var i = 0; i < index; ++i)
+		this.finalArea.push(this.data.shift());
 }
 
 StagingArea.prototype.calculate = function () {
 	if (this.data.length == 0)
 		return this.finalArea.calculate();
 	else if (this.paranthesisPos.length > 0)
-		return getResult(this.data.slice(this.paranthesisPos[-1] + 1));
-	
+		return getResult(this.data.slice(this.paranthesisPos[this.paranthesisPos.length - 1] + 1));
+
+		
 	console.log("cal: " + this.data);
 	
 	return getResult(this.data.slice());
@@ -44,10 +43,15 @@ StagingArea.prototype.setOperator = function (op) {
 }
 
 StagingArea.prototype.startParan = function () {
+	if (this.operator != null) {
+		this.data.push(this.operator);
+		this.operator = null;
+	}
+	
 	this.paranthesisPos.push(this.data.length);
 	this.data.push("(");
 	
-	return 0;
+	return "";
 }
 
 StagingArea.prototype.endParan = function () {
