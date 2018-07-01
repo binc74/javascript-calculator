@@ -4,29 +4,28 @@
 /**
  * 
  */
-function View(numberArea, stagingArea, finalArea, numberAreaId, finalAreaId) {
-	this.numberArea = numberArea;
-	this.stagingArea = stagingArea;
-	this.finalArea = finalArea;
-	this.numberAreaId = numberAreaId;
+function CalculatorView(model) {
+	this.model = model;
+	this.inputAreaId = null;
+	this.finalAreaId = null;
+}
+
+CalculatorView.prototype.initialize = function (inputAreaId, finalAreaId) {
+	this.inputAreaId = inputAreaId;
 	this.finalAreaId = finalAreaId;
+	this.updateNumberView();
 }
 
 /**
- * update the number area's view
+ * update the input area's view
  */
-View.prototype.updateNumberView = function () {
-	var str = this.numberArea.toString();
-	document.getElementById(this.numberAreaId).innerHTML = str == "" ? "0" : str;
+CalculatorView.prototype.updateNumberView = function () {
+	document.getElementById(this.inputAreaId).innerHTML = this.model.getInputString();
 }
 
 /**
  * update the result area's view
  */
-View.prototype.updateFinalView = function () {
-	document.getElementById(this.finalAreaId).innerHTML = this.finalArea.toString() + this.stagingArea.toString();	
-}
-
-View.prototype.initialize = function () {
-	this.updateNumberView();
+CalculatorView.prototype.updateFinalView = function () {
+	document.getElementById(this.finalAreaId).innerHTML = this.model.getFinalString();	
 }

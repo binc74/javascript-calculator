@@ -1,20 +1,20 @@
 // Created by Bin Chen 6/28/2018
-// Modified by Bin Chen 6/28/2018 - Implemented the NumberArea, append, submitNumber and toString functions
+// Modified by Bin Chen 6/28/2018 - Implemented the InputArea, append, submitNumber and toString functions
 // Modified by Bin Chen 6/29/2018 - change the data from list to string
 
-function NumberArea() {
+function InputArea() {
 	this.data = "";
 	this.stagingArea = null;
 	this.hasPeriod = false;
-	this.shouldClear = true;
+	this.isResult = false;
 }
 
-NumberArea.prototype.setStagingArea = function (stagingArea) {
+InputArea.prototype.setStagingArea = function (stagingArea) {
 	this.stagingArea = stagingArea;
 }
 
-NumberArea.prototype.append = function (num) {	
-	if (this.shouldClear) {
+InputArea.prototype.push = function (num) {	
+	if (this.isResult) {
 		this.stagingArea.clear();
 		this.data = "";
 		this.hasPeriod = false;
@@ -29,10 +29,10 @@ NumberArea.prototype.append = function (num) {
 		this.data += num;
 	}
 	
-	this.shouldClear = false;
+	this.isResult = false;
 }
 
-NumberArea.prototype.toString = function() {
+InputArea.prototype.toString = function() {
 	var res = "";
 	var metPeriod = false || !this.hasPeriod;
 	var count = 0;
@@ -58,15 +58,16 @@ NumberArea.prototype.toString = function() {
 	return res;
 }
 
-NumberArea.prototype.submitNumber = function () {
-	// merge the numbers in the data list and push the number into the list in resultArea 
-	this.stagingArea.append(parseFloat(this.data));
+InputArea.prototype.process = function (op) {
+	if (Consts.OP_SET.has(op) && !this.isResult)
+		this.stagingArea.push(this.data.length == 0 ? 0 : parseFloat(this.data));
 	
-	// initialize the data list
-	this.shouldClear = true;
+	this.isResult = true;
 }
 
-NumberArea.prototype.setResult = function (result) {
-	this.data = result.toString();
-	this.shouldClear = true;
+InputArea.prototype.setResult = function (result) {
+	if (this.isResult)
+		this.data = result.toString();
+	
+	this.isResult = true;
 }

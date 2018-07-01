@@ -3,9 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<link href="stylesheets/style.css" rel="stylesheet" />
-		<script src="javascripts/model/number-area.js"></script>
-		<script src="javascripts/model/final-area.js"></script>
+		<script src="javascripts/model/constants.js"></script>		
+		<script src="javascripts/model/input-area.js"></script>
 		<script src="javascripts/model/staging-area.js"></script>
+		<script src="javascripts/model/final-area.js"></script>
+		<script src="javascripts/model/model.js"></script>
 		<script src="javascripts/controller.js"></script>
 		<script src="javascripts/view.js"></script>
 	</head>	
@@ -17,13 +19,13 @@
 		<table>
 			<tr>
 				<td><button class="func" value="log" type="button">log</button></td>
-				<td><button class="func" value="CE" type="button">CE</button></td>
-				<td><button class="func" value="C" type="button">C</button></td>
+				<td><button class="gfunc" value="CE" type="button">CE</button></td>
+				<td><button class="gfunc" value="C" type="button">C</button></td>
 				<td><button class="func" value="back" type="button">back</button></td>
 				<td><button class="op" value="div" type="button">/</button></td>
 			</tr>
 			<tr>
-				<td><button class="func" value="pi" type="button">pi</button></td>
+				<td><button class="gfunc" value="pi" type="button">pi</button></td>
 				<td><button class="number" value="7" type="button">7</button></td>
 				<td><button class="number" value="8" type="button">8</button></td>
 				<td><button class="number" value="9" type="button">9</button></td>
@@ -44,25 +46,21 @@
 				<td><button class="op" value="+" type="button">+</button></td>
 			</tr>			
 			<tr>
-				<td><button class="op" value="(" type="button">(</button></td>
-				<td><button class="op" value=")" type="button">)</button></td>
+				<td><button class="paranthesis" id="(" value="(" type="button">(</button></td>
+				<td><button class="paranthesis" id=")" value=")" type="button">)</button></td>
 				<td><button class="number" value="0" type="button">0</button></td>
 				<td><button class="number" value="." type="button">.</button></td>
-				<td><button class="func" value="=" type="button">=</button></td>
+				<td><button class="gfunc" value="=" type="button">=</button></td>
 			</tr>
 		</table>
 	</body>
 	<script>		
-	var numberArea = new NumberArea();
-	var stagingArea = new StagingArea();
-	var finalArea = new FinalArea();
-	numberArea.setStagingArea(stagingArea);
-	stagingArea.setResultArea(finalArea);
-	finalArea.setNumberArea(numberArea);
+	var model = new CalculatorModel();
+	var view = new CalculatorView(model);
+	var controller = new CalculatorController(model, view);
 	
-	var view = new View(numberArea, stagingArea, finalArea, "input", "result");
-	registerButtons(numberArea, stagingArea, finalArea, view);
-	
-	view.initialize();	
+	view.initialize("input", "result");	
+	model.initialize();
+	controller.initialize();		
 	</script>
 </html>

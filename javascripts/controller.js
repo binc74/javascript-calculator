@@ -2,9 +2,23 @@
 // Modified by Bin Chen 6/28/2018 - Implemented registerNumButtons function
 // Modified by Bin Chen 6/29/2018 - Implemented registerOpButtons function
 
-function registerNumButtons(numberArea, view) {
+// Controller for the calculator
+
+function CalculatorController(model, view) {
+	this.model = model;
+	this.view = view;
+}
+
+CalculatorController.prototype.initialize = function () {
+	registerNumButtons(this.model, this.view);
+	registerOpButtons(this.model, this.view);
+	registerParanthesis(this.model);
+}
+
+
+function registerNumButtons(model, view) {
 	var appendNum = function () {
-		numberArea.append(this.value);	
+		model.addNumber(this.value);	
 		view.updateNumberView();		
 	};	
 	
@@ -16,11 +30,9 @@ function registerNumButtons(numberArea, view) {
 		numberButtonList[i].addEventListener("click", appendNum, false);
 }
 
-function registerOpButtons(numberArea, stagingArea, finalArea, view) {
+function registerOpButtons(model, view) {
 	var appendOp = function () {
-		numberArea.submitNumber();
-		stagingArea.append(this.value);
-		finalArea.calculate();
+		model.addOperator(this.value);
 		
 		view.updateFinalView();
 		view.updateNumberView();
@@ -34,11 +46,11 @@ function registerOpButtons(numberArea, stagingArea, finalArea, view) {
 		opButtonList[i].addEventListener("click", appendOp, false);
 }
 
+function registerParanthesis(model) {
+	document.getElementById("(").addEventListener("click", model.startParan, false);
+	document.getElementById(")").addEventListener("click", model.endParan, false);	
+}	
+
 function registerFuncButtons() {
 	
-}
-
-function registerButtons(numberArea, stagingArea, finalArea, view) {
-	registerNumButtons(numberArea, view);
-	registerOpButtons(numberArea, stagingArea, finalArea, view);
 }

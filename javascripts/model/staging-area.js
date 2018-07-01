@@ -4,36 +4,65 @@
 function StagingArea() {
 	this.data = [];
 	this.finalArea = null;
-	this.paramDifference = 0;
+	this.operator = null;
+	this.paranthesisPos = [];
 }
 
-StagingArea.prototype.opSet = new Set("+-*/");
-
-StagingArea.prototype.setResultArea = function (finalArea) {
+StagingArea.prototype.setFinalArea = function (finalArea) {
 	this.finalArea = finalArea;
 }
 
-StagingArea.prototype.submitArea = function () {
+StagingArea.prototype.submit = function () {
 	for (var i = 0; i < this.data.length; ++i)
-		this.finalArea.append(this.data[i]);
+		this.finalArea.push(this.data[i]);
 	
 	this.data.length = 0;
 }
 
-StagingArea.prototype.append = function (op) {
-	if (this.opSet.has(op) && this.paramDifference == 0)
-		this.submitArea();
+StagingArea.prototype.calculate = function () {
+	if (this.data.length == 0)
+		return this.finalArea.calculate();
+	else if (this.paranthesisPos.length > 0)
+		return getResult(this.data.slice(this.paranthesisPos[-1] + 1));
 	
-	this.data.push(op);
+	console.log("cal: " + this.data);
+	
+	return getResult(this.data.slice());
+}
+
+StagingArea.prototype.push = function (ele) {	
+	if (this.operator != null && this.data.length > 0) {
+		this.data.push(this.operator);
+		this.operator = null;
+	}
+
+	this.data.push(ele);	
+}
+
+StagingArea.prototype.setOperator = function (op) {
+	this.operator = op;
+}
+
+StagingArea.prototype.startParan = function () {
+	this.paranthesisPos.push(this.data.length);
+	this.data.push("(");
+	
+	return 0;
+}
+
+StagingArea.prototype.endParan = function () {
+	this.data.push(")");	
+	
+	return getResult(this.data.slice(this.paranthesisPos.pop()));
 }
 
 StagingArea.prototype.clear = function () {
-	if (this.data.length > 0 && !this.opSet.has(this.data[0]))
+	if (this.data.length > 0 && this.operator == null && this.paranthesisPos.length == 0)
 		this.data.length = 0;
 }
 
 StagingArea.prototype.toString = function() {
 	return this.data.reduce(function (a, b) {
 		return a + b.toString() + " ";
-	}, "");
+	}, "") + (this.operator == null ? "" : this.operator + " ");
 }
