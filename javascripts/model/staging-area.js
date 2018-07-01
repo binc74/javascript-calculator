@@ -4,7 +4,7 @@
 function StagingArea() {
 	this.data = [];
 	this.finalArea = null;
-	this.operator = null;
+	this.pendingOperator = null;
 	this.paranthesisPos = [];
 }
 
@@ -30,9 +30,9 @@ StagingArea.prototype.calculate = function () {
 }
 
 StagingArea.prototype.push = function (num) {	
-	if (this.operator != null) {
-		this.data.push(this.operator);		
-		this.operator = null;
+	if (this.pendingOperator != null) {
+		this.data.push(this.pendingOperator);		
+		this.pendingOperator = null;
 	}
 	
 	if (this.paranthesisPos.length == 0)
@@ -42,17 +42,17 @@ StagingArea.prototype.push = function (num) {
 	this.data.push(num);	
 }
 
-StagingArea.prototype.setOperator = function (op) {
+StagingArea.prototype.setPendingOperator = function (op) {
 	if (this.paranthesisPos.length == 0)
 		this.submit();
 	
-	this.operator = op;
+	this.pendingOperator = op;
 }
 
-StagingArea.prototype.startParan = function () {
-	if (this.operator != null) {
-		this.data.push(this.operator);
-		this.operator = null;
+StagingArea.prototype.addLeftParan = function () {
+	if (this.pendingOperator != null) {
+		this.data.push(this.pendingOperator);
+		this.pendingOperator = null;
 	}
 	
 	if (this.paranthesisPos.length == 0)
@@ -60,23 +60,21 @@ StagingArea.prototype.startParan = function () {
 	
 	this.paranthesisPos.push(this.data.length);
 	this.data.push("(");
-	
-	return "";
 }
 
-StagingArea.prototype.endParan = function () {
+StagingArea.prototype.addRightParan = function () {
 	this.data.push(")");	
 	
 	return getResult(this.data.slice(this.paranthesisPos.pop()));
 }
 
 StagingArea.prototype.clear = function () {
-	if (this.data.length > 0 && this.operator == null && this.paranthesisPos.length == 0)
+	if (this.data.length > 0 && this.pendingOperator == null && this.paranthesisPos.length == 0)
 		this.data.length = 0;
 }
 
 StagingArea.prototype.toString = function() {
 	return this.data.reduce(function (a, b) {
 		return a + b.toString() + " ";
-	}, "") + (this.operator == null ? "" : this.operator + " ");
+	}, "") + (this.pendingOperator == null ? "" : this.pendingOperator + " ");
 }

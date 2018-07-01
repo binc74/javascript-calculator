@@ -36,19 +36,17 @@ Consts.PARANTHESIS = new Set("()");
  function parseExpr(tokens) {
 	var value = parseTerm(tokens);
 	
-	if (tokens.length > 0) {
-		while (Consts.ADD_OP_SET.has(tokens[0])) {			
-			switch (tokens.shift()) {
-				case '+':
-					value += parseTerm(tokens);
-					break;
-					
-				case '-':
-					value -= parseTerm(tokens);
-					break;
-			}
+	while (tokens.length > 0 && Consts.ADD_OP_SET.has(tokens[0])) {			
+		switch (tokens.shift()) {
+			case '+':
+				value += parseTerm(tokens);
+				break;
+				
+			case '-':
+				value -= parseTerm(tokens);
+				break;
 		}
-	}		
+	}	
 	
 	return value;
 }
@@ -56,22 +54,20 @@ Consts.PARANTHESIS = new Set("()");
 function parseTerm(tokens) {
 	var value = parseFactor(tokens);
 	
-	if(tokens.length > 0) {
-		while (Consts.MULT_OP_SET.has(tokens[0])) {
-			switch (tokens.shift()) {
-				case '*':
-					value *= parseFactor(tokens);
-					break;
-					
-				case '/':
-					value /= parseFactor(tokens);
-					break;
-					
-				case '%':
-					value %= parseFactor(tokens);
-					break;
-			}		
-		}
+	while (tokens.length > 0 && Consts.MULT_OP_SET.has(tokens[0])) {
+		switch (tokens.shift()) {
+			case '*':
+				value *= parseFactor(tokens);
+				break;
+				
+			case '/':
+				value /= parseFactor(tokens);
+				break;
+				
+			case '%':
+				value %= parseFactor(tokens);
+				break;
+		}		
 	}
 	
 	return value;

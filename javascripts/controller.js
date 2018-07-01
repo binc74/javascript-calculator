@@ -46,18 +46,18 @@ function registerOpButtons(model, view) {
 }
 
 function registerParanthesis(model) {
-	var startParan = function () { 
-		model.startParan();
+	var addLeftParan = function () { 
+		model.addLeftParan();
 		view.update();
 	};
 		
-	var endParan = function () { 
-		model.endParan();
+	var addRightParan = function () { 
+		model.addRightParan();
 		view.update();
 	};
 	
-	document.getElementById("(").addEventListener("click", startParan, false);
-	document.getElementById(")").addEventListener("click", endParan, false);	
+	document.getElementById("(").addEventListener("click", addLeftParan, false);
+	document.getElementById(")").addEventListener("click", addRightParan, false);	
 }	
 
 function registerFuncButtons() {

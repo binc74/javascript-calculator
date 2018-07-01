@@ -18,7 +18,7 @@ CalculatorModel.prototype.addNumber = function(num) {
 
 CalculatorModel.prototype.addOperator = function(op) {	
 	this.inputArea.submit();	
-	this.stagingArea.setOperator(op);
+	this.stagingArea.setPendingOperator(op);
 	
 	this.inputArea.setResult(this.stagingArea.calculate());
 }
@@ -29,13 +29,15 @@ CalculatorModel.prototype.getNumberString = function() {
 	return str == "" ? "0" : str;
 }
 
-CalculatorModel.prototype.startParan = function () {
-	this.inputArea.setResult(this.stagingArea.startParan());
+CalculatorModel.prototype.addLeftParan = function () {
+	this.stagingArea.addLeftParan()
+	
+	this.inputArea.setResult("");
 }
 
-CalculatorModel.prototype.endParan = function () {
+CalculatorModel.prototype.addRightParan = function () {
 	this.inputArea.submit();
-	this.inputArea.setResult(this.stagingArea.endParan());
+	this.inputArea.setResult(this.stagingArea.addRightParan());
 }
 
 CalculatorModel.prototype.calculate = function () {	
@@ -49,5 +51,5 @@ CalculatorModel.prototype.getInputString = function() {
 CalculatorModel.prototype.getFinalString = function() {
 	console.log("Staging: " + this.stagingArea.toString());
 	console.log("Final: " + this.finalArea.toString());
-	return this.finalArea.toString() + this.stagingArea.toString();
+	return this.finalArea.toString() + " // " + this.stagingArea.toString();
 }
