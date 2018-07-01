@@ -12,8 +12,8 @@ StagingArea.prototype.setFinalArea = function (finalArea) {
 	this.finalArea = finalArea;
 }
 
-StagingArea.prototype.submit = function (index) {
-	for (var i = 0; i < index; ++i)
+StagingArea.prototype.submit = function () {
+	while (this.data.length > 0)
 		this.finalArea.push(this.data.shift());
 }
 
@@ -29,16 +29,23 @@ StagingArea.prototype.calculate = function () {
 	return getResult(this.data.slice());
 }
 
-StagingArea.prototype.push = function (ele) {	
-	if (this.operator != null && this.data.length > 0) {
-		this.data.push(this.operator);
+StagingArea.prototype.push = function (num) {	
+	if (this.operator != null) {
+		this.data.push(this.operator);		
 		this.operator = null;
 	}
-
-	this.data.push(ele);	
+	
+	if (this.paranthesisPos.length == 0)
+		this.submit();
+	
+	
+	this.data.push(num);	
 }
 
 StagingArea.prototype.setOperator = function (op) {
+	if (this.paranthesisPos.length == 0)
+		this.submit();
+	
 	this.operator = op;
 }
 
@@ -47,6 +54,9 @@ StagingArea.prototype.startParan = function () {
 		this.data.push(this.operator);
 		this.operator = null;
 	}
+	
+	if (this.paranthesisPos.length == 0)
+		this.submit();
 	
 	this.paranthesisPos.push(this.data.length);
 	this.data.push("(");

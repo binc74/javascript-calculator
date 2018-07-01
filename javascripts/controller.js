@@ -19,7 +19,7 @@ CalculatorController.prototype.initialize = function () {
 function registerNumButtons(model, view) {
 	var appendNum = function () {
 		model.addNumber(this.value);	
-		view.updateNumberView();		
+		view.update();	
 	};	
 	
 	// get all the button tags with class "number"
@@ -34,8 +34,7 @@ function registerOpButtons(model, view) {
 	var appendOp = function () {
 		model.addOperator(this.value);
 		
-		view.updateFinalView();
-		view.updateNumberView();
+		view.update();
 	};
 	
 	// get all the button tags with class "op"
@@ -49,14 +48,12 @@ function registerOpButtons(model, view) {
 function registerParanthesis(model) {
 	var startParan = function () { 
 		model.startParan();
-		view.updateFinalView();
-		view.updateNumberView();
+		view.update();
 	};
 		
 	var endParan = function () { 
 		model.endParan();
-		view.updateFinalView();
-		view.updateNumberView();
+		view.update();
 	};
 	
 	document.getElementById("(").addEventListener("click", startParan, false);

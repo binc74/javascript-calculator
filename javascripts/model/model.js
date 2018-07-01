@@ -30,7 +30,6 @@ CalculatorModel.prototype.getNumberString = function() {
 }
 
 CalculatorModel.prototype.startParan = function () {
-	console.log("start paran");
 	this.inputArea.setResult(this.stagingArea.startParan());
 }
 
@@ -50,5 +49,5 @@ CalculatorModel.prototype.getInputString = function() {
 CalculatorModel.prototype.getFinalString = function() {
 	console.log("Staging: " + this.stagingArea.toString());
 	console.log("Final: " + this.finalArea.toString());
-	return this.stagingArea.toString() + this.finalArea.toString();
+	return this.finalArea.toString() + this.stagingArea.toString();
 }
