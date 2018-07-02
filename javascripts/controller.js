@@ -9,17 +9,28 @@ function CalculatorController(model, view) {
 	this.view = view;
 }
 
+/**
+ * Initialize the controller.
+ *
+ * @author Bin Chen
+ */
 CalculatorController.prototype.initialize = function () {
 	registerNumButtons(this.model, this.view);
 	registerOpButtons(this.model, this.view);
-	registerParanthesis(this.model, this.view);
+	registerParenthesis(this.model, this.view);
 	registerFuncButtons(this.model);
 }
 
-
+/**
+ * Register the number buttons with functions.
+ *
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ * @author Bin Chen
+ */
 function registerNumButtons(model, view) {
 	var appendNum = function () {
-		model.addNumber(this.value);	
+		model.addDigit(this.value);	
 		view.update();	
 	};	
 	
@@ -31,6 +42,13 @@ function registerNumButtons(model, view) {
 		numberButtonList[i].addEventListener("click", appendNum, false);
 }
 
+/**
+ * Register the operator buttons with functions.
+ *
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ * @author Bin Chen
+ */
 function registerOpButtons(model, view) {
 	var appendOp = function () {
 		model.addOperator(this.value);
@@ -46,21 +64,35 @@ function registerOpButtons(model, view) {
 		opButtonList[i].addEventListener("click", appendOp, false);
 }
 
-function registerParanthesis(model, view) {
-	var addLeftParan = function () { 
-		model.addLeftParan();
+/**
+ * Register the parenthesis buttons with functions.
+ *
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ * @author Bin Chen
+ */
+function registerParenthesis(model, view) {
+	var addLeftParen = function () { 
+		model.addLeftParen();
 		view.update();
 	};
 		
-	var addRightParan = function () { 
-		model.addRightParan();
+	var addRightParen = function () { 
+		model.addRightParen();
 		view.update();
 	};
 	
-	document.getElementById("(").addEventListener("click", addLeftParan, false);
-	document.getElementById(")").addEventListener("click", addRightParan, false);	
+	document.getElementById("(").addEventListener("click", addLeftParen, false);
+	document.getElementById(")").addEventListener("click", addRightParen, false);	
 }	
 
+/**
+ * Register the functions buttons with functions.
+ *
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ * @author Bin Chen
+ */
 function registerFuncButtons() {
 	var addFunction = function () {
 		model.addFunction(this.value);

@@ -88,7 +88,7 @@ InputArea.prototype.setResult = function (result) {
 }
 
 InputArea.prototype.addFunction = function (func) {
-	this.stagingArea.addLeftParan(func);
+	this.stagingArea.addLeftParen(func);
 	this.submit();
-	this.stagingArea.addRightParan();
+	this.stagingArea.addRightParen();
 }

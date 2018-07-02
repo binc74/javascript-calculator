@@ -26,35 +26,35 @@ Consts.PARANTHESIS = new Set("()");
  * add-op -> + | -
  * mult-op -> * | / | %
  */
- function getResult(tokens) {
-	 if (tokens.length == 0)
-		 return 0;
-	 	 
-	 console.log("Current Expr: " + tokens.join(' '));
-	 
-	 var res = parseExpr(tokens);
-	 
-	 console.log("Current Result: " + res);
-	 
-	 return res;
- }
+function getResult(tokens) {
+	if (tokens.length == 0)
+		return 0;
+
+	console.log("Current Expr: " + tokens.join(' '));
+
+	var res = parseExpr(tokens);
+
+	console.log("Current Result: " + res);
+
+	return res;
+}
+
  
- 
- function parseExpr(tokens) {
+function parseExpr(tokens) {
 	var value = parseTerm(tokens);
-	
+
 	while (tokens.length > 0 && Consts.ADD_OP_SET.has(tokens[0])) {			
 		switch (tokens.shift()) {
 			case '+':
 				value += parseTerm(tokens);
 				break;
-				
+
 			case '-':
 				value -= parseTerm(tokens);
 				break;
 		}
 	}	
-	
+
 	return value;
 }
 
