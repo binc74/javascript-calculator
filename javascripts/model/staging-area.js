@@ -10,7 +10,7 @@ function StagingArea() {
 
 StagingArea.prototype.isCompleted = function () {
 	return this.data.length > 0 && this.pendingOperator == null &&
-		this.paranthesisPos.length == 0;
+		this.data[this.data.length - 1] == ')';
 }
 
 StagingArea.prototype.setFinalArea = function (finalArea) {
@@ -23,11 +23,15 @@ StagingArea.prototype.submit = function () {
 }
 
 StagingArea.prototype.evaluate = function () {
-	if (this.data.length == 0)
+	if (this.data.length == 0) {
 		return this.finalArea.evaluate();
-	else if (this.paranthesisPos.length > 0)
-		return getResult(this.data.slice(this.paranthesisPos[this.paranthesisPos.length - 1] + 1));
+	} else if (this.paranthesisPos.length > 0) {
+		if (this.data[this.data.length - 1] == ')')
+			return getResult(this.data.slice(this.paranthesisPos[this.paranthesisPos.length - 1]));
+		else
+			return getResult(this.data.slice(this.paranthesisPos[this.paranthesisPos.length - 1] + 1));
 
+	}
 		
 	console.log("cal: " + this.data);
 	
@@ -48,8 +52,8 @@ StagingArea.prototype.push = function (ele) {
 }
 
 StagingArea.prototype.setPendingOperator = function (op) {
-	if (this.paranthesisPos.length == 0)
-		this.submit();
+	if (this.data[this.data.length - 1] == ')') this.paranthesisPos.pop();
+	if (this.paranthesisPos.length == 0) this.submit();
 	
 	this.pendingOperator = op;
 }
@@ -78,12 +82,12 @@ StagingArea.prototype.addLeftParan = function (funcName) {
 StagingArea.prototype.addRightParan = function () {
 	this.data.push(")");	
 	
-	return getResult(this.data.slice(this.paranthesisPos.pop()));
+	return this.evaluate();
 }
 
 StagingArea.prototype.clear = function () {
 	if (this.isCompleted())
-		this.data.length = 0;
+		this.data = this.data.slice(0, this.paranthesisPos.pop());
 }
 
 StagingArea.prototype.toString = function() {

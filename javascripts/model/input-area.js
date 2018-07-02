@@ -64,26 +64,27 @@ InputArea.prototype.toString = function() {
 }
 
 InputArea.prototype.submit = function () {
-	//if (Consts.OP_SET.has(op) && !this.haveSubmitted)
-	if (!this.haveSubmitted) {
-		if (this.data.length == 0) {
-			this.stagingArea.push(0);
-		} else {
-			var res = parseFloat(this.data);
-			this.stagingArea.push(this.isNegative ? -res : res);	
-		}
+	//if (!this.haveSubmitted) {
+	if (this.data.length == 0) {
+		this.stagingArea.push(0);
+	} else {
+		var res = parseFloat(this.data);
+		this.stagingArea.push(this.isNegative ? -res : res);	
 	}
+	//}
 	
 	this.haveSubmitted = true;
 }
 
 InputArea.prototype.setResult = function (result) {
-	if (result < 0)
-		this.isNegative = true;
-	else
-		this.isNegative = false;
-	
 	this.data = result.toString();
+	
+	if (result < 0) {
+		this.isNegative = true;
+		this.data = this.data.slice(1);
+	} else {
+		this.isNegative = false;
+	}	
 }
 
 InputArea.prototype.addFunction = function (func) {

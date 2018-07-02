@@ -17,7 +17,9 @@ CalculatorModel.prototype.addNumber = function (num) {
 }
 
 CalculatorModel.prototype.addOperator = function (op) {	
-	this.inputArea.submit();	
+	if (!this.stagingArea.isCompleted())
+		this.inputArea.submit();	
+	
 	this.stagingArea.setPendingOperator(op);
 	
 	this.inputArea.setResult(this.stagingArea.evaluate());
@@ -49,8 +51,6 @@ CalculatorModel.prototype.getInputString = function () {
 }
 
 CalculatorModel.prototype.getFinalString = function () {
-	console.log("Staging: " + this.stagingArea.toString());
-	console.log("Final: " + this.finalArea.toString());
 	return this.finalArea.toString() + " // " + this.stagingArea.toString();
 }
 
@@ -59,4 +59,6 @@ CalculatorModel.prototype.addFunction = function (func) {
 		this.stagingArea.addFunction(func);
 	else
 		this.inputArea.addFunction(func);
+	
+	this.inputArea.setResult(this.stagingArea.evaluate());
 }

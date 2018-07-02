@@ -29,8 +29,14 @@ Consts.PARANTHESIS = new Set("()");
  function getResult(tokens) {
 	 if (tokens.length == 0)
 		 return 0;
+	 	 
+	 console.log("Current Expr: " + tokens.join(' '));
 	 
-	 return parseExpr(tokens);
+	 var res = parseExpr(tokens);
+	 
+	 console.log("Current Result: " + res);
+	 
+	 return res;
  }
  
  
@@ -109,7 +115,7 @@ function parseFunction(tokens) {
 	
 	switch (func) {
 		case "neg(":
-			return -param;
+			return -1 * param;
 			
 		case "root(":
 			return Math.sqrt(param);
