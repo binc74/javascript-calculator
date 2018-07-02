@@ -8,6 +8,11 @@ function StagingArea() {
 	this.paranthesisPos = [];
 }
 
+StagingArea.prototype.isCompleted = function () {
+	return this.data.length > 0 && this.pendingOperator == null &&
+		this.paranthesisPos.length == 0;
+}
+
 StagingArea.prototype.setFinalArea = function (finalArea) {
 	this.finalArea = finalArea;
 }
@@ -17,9 +22,9 @@ StagingArea.prototype.submit = function () {
 		this.finalArea.push(this.data.shift());
 }
 
-StagingArea.prototype.calculate = function () {
+StagingArea.prototype.evaluate = function () {
 	if (this.data.length == 0)
-		return this.finalArea.calculate();
+		return this.finalArea.evaluate();
 	else if (this.paranthesisPos.length > 0)
 		return getResult(this.data.slice(this.paranthesisPos[this.paranthesisPos.length - 1] + 1));
 
@@ -29,7 +34,7 @@ StagingArea.prototype.calculate = function () {
 	return getResult(this.data.slice());
 }
 
-StagingArea.prototype.push = function (num) {	
+StagingArea.prototype.push = function (ele) {	
 	if (this.pendingOperator != null) {
 		this.data.push(this.pendingOperator);		
 		this.pendingOperator = null;
@@ -39,7 +44,7 @@ StagingArea.prototype.push = function (num) {
 		this.submit();
 	
 	
-	this.data.push(num);	
+	this.data.push(ele);	
 }
 
 StagingArea.prototype.setPendingOperator = function (op) {
@@ -49,7 +54,11 @@ StagingArea.prototype.setPendingOperator = function (op) {
 	this.pendingOperator = op;
 }
 
-StagingArea.prototype.addLeftParan = function () {
+StagingArea.prototype.addFunction = function (func) {
+	this.data[this.paranthesisPos[this.paranthesisPos.length - 1]] = func;
+}
+
+StagingArea.prototype.addLeftParan = function (funcName) {
 	if (this.pendingOperator != null) {
 		this.data.push(this.pendingOperator);
 		this.pendingOperator = null;
@@ -59,7 +68,11 @@ StagingArea.prototype.addLeftParan = function () {
 		this.submit();
 	
 	this.paranthesisPos.push(this.data.length);
-	this.data.push("(");
+	
+	if (arguments.length == 0)
+		this.data.push("(");
+	else
+		this.data.push(funcName);
 }
 
 StagingArea.prototype.addRightParan = function () {
@@ -69,7 +82,7 @@ StagingArea.prototype.addRightParan = function () {
 }
 
 StagingArea.prototype.clear = function () {
-	if (this.data.length > 0 && this.pendingOperator == null && this.paranthesisPos.length == 0)
+	if (this.isCompleted())
 		this.data.length = 0;
 }
 

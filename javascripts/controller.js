@@ -12,7 +12,8 @@ function CalculatorController(model, view) {
 CalculatorController.prototype.initialize = function () {
 	registerNumButtons(this.model, this.view);
 	registerOpButtons(this.model, this.view);
-	registerParanthesis(this.model);
+	registerParanthesis(this.model, this.view);
+	registerFuncButtons(this.model);
 }
 
 
@@ -45,7 +46,7 @@ function registerOpButtons(model, view) {
 		opButtonList[i].addEventListener("click", appendOp, false);
 }
 
-function registerParanthesis(model) {
+function registerParanthesis(model, view) {
 	var addLeftParan = function () { 
 		model.addLeftParan();
 		view.update();
@@ -61,5 +62,17 @@ function registerParanthesis(model) {
 }	
 
 function registerFuncButtons() {
+	var addFunction = function () {
+		model.addFunction(this.value);
+		view.update();
+	};
+	
+	var funcButtonList = document.getElementsByClassName("func");
+	
+	for (var i = 0; i < funcButtonList.length; ++i)
+		funcButtonList[i].addEventListener("click", addFunction, false);
+}
+
+function registerGlobalFuncButtons() {
 	
 }

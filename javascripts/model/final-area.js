@@ -14,7 +14,7 @@ FinalArea.prototype.push = function (ele) {
 	this.data.push(ele);
 }
 
-FinalArea.prototype.calculate = function () {
+FinalArea.prototype.evaluate = function () {
 	if (this.data.length > 0)
 		return getResult(this.data.slice());
 	

@@ -6,6 +6,7 @@ function InputArea() {
 	this.data = "";
 	this.stagingArea = null;
 	this.hasPeriod = false;
+	this.isNegative = false;
 	this.haveSubmitted = false;
 }
 
@@ -18,10 +19,14 @@ InputArea.prototype.push = function (num) {
 		this.stagingArea.clear();
 		this.data = "";
 		this.hasPeriod = false;
+		this.isNegative = false;
 	}
 
 	if (num == ".") {
 		if (!this.hasPeriod) {
+			if (this.data.length == 0)
+				this.data += "0";
+			
 			this.data += num;
 			this.hasPeriod = true;			
 		}
@@ -52,20 +57,37 @@ InputArea.prototype.toString = function() {
 		}
 	}
 	
-	if (res[0] == '.' || res.length == 0)
-		res = "0" + res;
+	if (this.isNegative)
+		res = "-" + res;
 	
 	return res;
 }
 
 InputArea.prototype.submit = function () {
 	//if (Consts.OP_SET.has(op) && !this.haveSubmitted)
-	if (!this.haveSubmitted)
-		this.stagingArea.push(this.data.length == 0 ? 0 : parseFloat(this.data));
+	if (!this.haveSubmitted) {
+		if (this.data.length == 0) {
+			this.stagingArea.push(0);
+		} else {
+			var res = parseFloat(this.data);
+			this.stagingArea.push(this.isNegative ? -res : res);	
+		}
+	}
 	
 	this.haveSubmitted = true;
 }
 
 InputArea.prototype.setResult = function (result) {
+	if (result < 0)
+		this.isNegative = true;
+	else
+		this.isNegative = false;
+	
 	this.data = result.toString();
+}
+
+InputArea.prototype.addFunction = function (func) {
+	this.stagingArea.addLeftParan(func);
+	this.submit();
+	this.stagingArea.addRightParan();
 }

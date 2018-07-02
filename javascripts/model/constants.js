@@ -12,16 +12,17 @@ Consts.MULT_OP_SET = new Set("*/%");
 Consts.PARANTHESIS = new Set("()");
 
 
-// Calculation
+// for calculation
 
-/* (Not yet completely implemented)
+/* 
  * cfg:	
  * expr -> term { add-op term }
  * term -> factor { mult-op factor }
  * factor -> sub-factor | number
- * sub-factor -> param | function param
+ * sub-factor -> param | function 
  * param -> ( expr )
- * function -> neg | root | log
+ * function -> func param )
+ * func -> neg | root | log (
  * add-op -> + | -
  * mult-op -> * | / | %
  */
@@ -74,13 +75,48 @@ function parseTerm(tokens) {
 }
 
 function parseFactor(tokens) {	
-	if (tokens[0] == '(') {
-		tokens.shift();
-		var value = parseExpr(tokens);
-		tokens.shift();
-		
-		return value;
-	}
+	if (typeof tokens[0] == "number") 
+		return tokens.shift();
 	
-	return tokens.shift();
+	return parseSubFactor(tokens);
+}
+
+function parseSubFactor(tokens) {
+	if (tokens[0] == '(') 	
+		return parseParam(tokens);
+	
+	return parseFunction(tokens);
+}
+
+function parseParam(tokens) {
+	if (tokens.shift() != '(') 
+		console.error("Error: can't find '('");
+	
+	var value = parseExpr(tokens);
+	
+	if (tokens.shift() != ')') 
+		console.error("Error: can't find ')'");
+	
+	return value;
+}
+
+function parseFunction(tokens) {
+	var func = tokens.shift();
+	var param = parseExpr(tokens);
+	
+	if (tokens.shift() != ')') 
+		console.error("Error: can't find ')'");
+	
+	switch (func) {
+		case "neg(":
+			return -param;
+			
+		case "root(":
+			return Math.sqrt(param);
+			
+		case "log(":
+			return Math.log(param);
+	}
+		
+	return 0;
 }

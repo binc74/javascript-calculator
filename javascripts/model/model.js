@@ -12,18 +12,18 @@ CalculatorModel.prototype.initialize = function () {
 	this.finalArea.setInputArea(this.inputArea);
 }
 
-CalculatorModel.prototype.addNumber = function(num) {
+CalculatorModel.prototype.addNumber = function (num) {
 	this.inputArea.push(num);
 }
 
-CalculatorModel.prototype.addOperator = function(op) {	
+CalculatorModel.prototype.addOperator = function (op) {	
 	this.inputArea.submit();	
 	this.stagingArea.setPendingOperator(op);
 	
-	this.inputArea.setResult(this.stagingArea.calculate());
+	this.inputArea.setResult(this.stagingArea.evaluate());
 }
 
-CalculatorModel.prototype.getNumberString = function() {
+CalculatorModel.prototype.getNumberString = function () {
 	var str = this.inputArea.toString();
 	
 	return str == "" ? "0" : str;
@@ -40,16 +40,23 @@ CalculatorModel.prototype.addRightParan = function () {
 	this.inputArea.setResult(this.stagingArea.addRightParan());
 }
 
-CalculatorModel.prototype.calculate = function () {	
-	this.inputArea.setResult(this.stagingArea.calculate());
+CalculatorModel.prototype.evaluate = function () {	
+	this.inputArea.setResult(this.stagingArea.evaluate());
 }
 
-CalculatorModel.prototype.getInputString = function() {
+CalculatorModel.prototype.getInputString = function () {
 	return this.inputArea.toString();
 }
 
-CalculatorModel.prototype.getFinalString = function() {
+CalculatorModel.prototype.getFinalString = function () {
 	console.log("Staging: " + this.stagingArea.toString());
 	console.log("Final: " + this.finalArea.toString());
 	return this.finalArea.toString() + " // " + this.stagingArea.toString();
+}
+
+CalculatorModel.prototype.addFunction = function (func) {
+	if (this.stagingArea.isCompleted())
+		this.stagingArea.addFunction(func);
+	else
+		this.inputArea.addFunction(func);
 }
