@@ -2,6 +2,7 @@
 // Implemented by Bin Chen 6/29/2018 - Implement finalArea and its four prototype functions, implement parts of calculation
 // Implemented by Bin Chen 7/2/2018 - merge the stagingArea into the FinalArea
 
+
 function FinalArea() {
 	this.data = [];
 	this.pendingOperator = null;
@@ -172,13 +173,12 @@ FinalArea.prototype.evaluate = function () {
 }
 
 /**
- * Clear the parenthesis that match the end parenthesis, and the inside content if necessary.
+ * Clear the parenthesis that match the end parenthesis, and the inside content.
  *
  * @author Bin Chen
  */
 FinalArea.prototype.clear = function () {
-	if (this.needClear())
-		this.data = this.data.slice(0, this.parenthesisPos.pop());
+	this.data = this.data.slice(0, this.parenthesisPos.pop());
 }
 
 /**

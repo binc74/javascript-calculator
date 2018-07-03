@@ -2,26 +2,54 @@
 // Modified by Bin Chen 6/28/2018 - Implemented the InputArea, append, submitNumber and toString functions
 // Modified by Bin Chen 6/29/2018 - change the data from list to string
 
+
 function InputArea() {
-	this.data = "";
-	this.finalArea = null;
-	this.hasPeriod = false;
-	this.isNegative = false;
-	this.haveSubmitted = false;
+	this.data = "";				// the input number in string format
+	this.finalArea = null;		// the finalArea
+	this.hasPeriod = false;		// true if the input read a period (use to avoid adding multiple period into the data)
+	this.isNegative = false;	// true if the input number is negative (use to deal with wired situation)
+	this.isResult = false;		// true if current input number is a result (set by the calculation from finalArea)
 }
 
+/**
+ * Set the finalArea for the inputArea.
+ *
+ * @param {FinalArea} finalArea		The finalArea
+ * @author Bin Chen
+ */
 InputArea.prototype.setFinalArea = function (finalArea) {
 	this.finalArea = finalArea;
 }
 
+/**
+ * A getter method for the variable isResult.
+ *
+ * @return {boolean} true if current input number is a result
+ * @author Bin Chen
+ */
+InputArea.prototype.isTheResult = function () {
+	return this.isResult;
+}
+
+/**
+ * Push the num character into the end of data string.
+ *
+ * @param {string} num		The num character
+ * @author Bin Chen
+ */
 InputArea.prototype.push = function (num) {	
-	if (this.haveSubmitted) {
-		this.finalArea.clear();
+	// if the current input is the result, then clear the input
+	if (this.isResult) {		
 		this.data = "";
 		this.hasPeriod = false;
 		this.isNegative = false;
+		
+		// remove redundent data in the finalArea if necessary
+		if (this.finalArea.needClear())
+			this.finalArea.clear();
 	}
 
+	// deal with the number that have period
 	if (num == ".") {
 		if (!this.hasPeriod) {
 			if (this.data.length == 0)
@@ -34,9 +62,16 @@ InputArea.prototype.push = function (num) {
 		this.data += num;
 	}
 	
-	this.haveSubmitted = false;
+	// since the user change the number, it now isn't a result
+	this.isResult = false;
 }
 
+/**
+ * Return the string representation of the data.
+ *
+ * @return {number} the evaluated value
+ * @author Bin Chen
+ */
 InputArea.prototype.toString = function() {
 	var res = "";
 	var metPeriod = !this.data.includes(".");
@@ -63,19 +98,26 @@ InputArea.prototype.toString = function() {
 	return res;
 }
 
+/**
+ * Submit current data to the finalArea.
+ *
+ * @author Bin Chen
+ */
 InputArea.prototype.submit = function () {
-	if (!this.haveSubmitted) {
-		if (this.data.length == 0) {
-			this.finalArea.push(0);
-		} else {
-			var res = parseFloat(this.data);
-			this.finalArea.push(this.isNegative ? -res : res);	
-		}
+	if (this.data.length == 0) {
+		this.finalArea.push(0);
+	} else {
+		var res = parseFloat(this.data);
+		this.finalArea.push(this.isNegative ? -res : res);	
 	}
-	
-	this.haveSubmitted = true;
 }
 
+/**
+ * Set the result to current data.
+ *
+ * @param {number} result		the result number
+ * @author Bin Chen
+ */
 InputArea.prototype.setResult = function (result) {
 	this.data = result.toString();
 	
@@ -86,9 +128,15 @@ InputArea.prototype.setResult = function (result) {
 		this.isNegative = false;
 	}	
 	
-	this.haveSubmitted = true;
+	this.isResult = true;
 }
 
+/**
+ * push a function to the finalArea with current data as parameter.
+ *
+ * @param {string} func		the name of the function
+ * @author Bin Chen
+ */
 InputArea.prototype.addFunction = function (func) {
 	this.finalArea.addLeftParen(func);
 	this.submit();

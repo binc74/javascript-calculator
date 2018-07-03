@@ -1,5 +1,6 @@
 // Created by Bin Chen in 7/1/2018
 
+
 function CalculatorModel() {
 	this.inputArea = new InputArea();
 	this.finalArea = new FinalArea();
@@ -32,7 +33,7 @@ CalculatorModel.prototype.addDigit = function (digit) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addOperator = function (op) {	
-	if (!this.finalArea.needClear())
+	if (!(this.finalArea.needClear() || this.inputArea.isTheResult()))
 		this.inputArea.submit();	
 	
 	this.finalArea.setPendingOperator(op);
