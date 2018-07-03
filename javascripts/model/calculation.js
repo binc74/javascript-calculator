@@ -27,11 +27,9 @@ Calculation.getResult = function (tokens) {
 	if (tokens.length == 0)
 		return 0;
 
-	console.log("Current Expr: " + tokens.join(' '));
 
 	var res = parseExpr(tokens);
 
-	console.log("Current Result: " + res);
 
 	return res;
 }

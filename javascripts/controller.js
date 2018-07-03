@@ -123,13 +123,12 @@ function registerGlobalFuncButtons(model, view) {
 		model.clearInputArea();
 		view.update();
 	}
-	
 
 	var clearAreas = function () {
 		model.clear();
 		view.update();
 	}
-	
+
 	document.getElementById("equals").addEventListener("click", submitEquation, false);
 	document.getElementById("C").addEventListener("click", clearAreas, false);
 	document.getElementById("CE").addEventListener("click", clearInputArea, false);

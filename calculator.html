@@ -7,6 +7,7 @@
 		<script src="javascripts/model/input-area.js"></script>
 		<script src="javascripts/model/final-area.js"></script>
 		<script src="javascripts/model/model.js"></script>
+        <script src="javascripts/model/history.js"></script>
 		<script src="javascripts/controller.js"></script>
 		<script src="javascripts/view.js"></script>
 	</head>	
@@ -63,6 +64,12 @@
 					</tr>
 				</table>
 			</div>
+			<br />
+            <div class="history">
+                HISTORY:<br/>
+                <p id="history"></p>
+
+            </div>
         </div>
 	</body>
 	<script>		
@@ -70,7 +77,7 @@
 	var view = new CalculatorView(model);
 	var controller = new CalculatorController(model, view);
 	
-	view.initialize("input", "result", "lastCalc");
+	view.initialize("input", "result", "lastCalc", "history");
 	model.initialize();
 	controller.initialize();		
 	</script>

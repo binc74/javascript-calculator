@@ -1,9 +1,15 @@
 // Created by Bin Chen in 7/1/2018
+// Modified by Jeb Alawi on 7/3/2018 - Added getHistoryHTML
 
 
 function CalculatorModel() {
 	this.inputArea = new InputArea();
 	this.finalArea = new FinalArea();
+	this.history = new History();
+}
+
+CalculatorModel.prototype.getHistoryHTML = function () {
+    return this.history.entries.join("<br />")
 }
 
 /**
@@ -120,10 +126,15 @@ CalculatorModel.prototype.getLastCalcString = function () {
  * Submit the final equation.
  *
  * @author Bin Chen
+ * Modified by Jeb Alawi 7/3/2018 - push expression and answer to history
  */
 CalculatorModel.prototype.submit = function () {
 	this.inputArea.submit();
-	this.inputArea.setResult(this.finalArea.submit(), true);
+    expression = this.finalArea.data.join(" ");
+    answer = this.finalArea.submit();
+    entry = expression + " = " + answer;
+    this.history.entries.push(entry);
+	this.inputArea.setResult(answer, true);
 }
 
 CalculatorModel.prototype.clear = function () {
