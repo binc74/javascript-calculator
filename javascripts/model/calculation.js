@@ -119,7 +119,26 @@ function parseFunction(tokens) {
 			
 		case "log(":
 			return Math.log(param);
+
+		case "10^(":
+			return Math.pow(10, param);
+
+		case "sin(":
+			return Math.sin(param * (Math.PI / 180));
+
+		case "cos(":
+			return Math.cos(param * (Math.PI / 180));
+
+		case "fact(":
+			return factorial(param);
 	}
 		
 	return 0;
+}
+
+function factorial(number){
+	if(number == 1){
+		return 1;
+	}
+	return number * factorial(number - 1);
 }
