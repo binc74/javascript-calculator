@@ -154,7 +154,7 @@ FinalArea.prototype.addRightParen = function () {
 FinalArea.prototype.getEvaluationList = function () {
 	if (this.parenthesisPos.length > 0) {
 		if (this.data[this.data.length - 1] == ')')
-			return this.data.slice(this.parenthesisPos[this.parenthesisPos.length - 1]);
+			return this.data.slice(this.parenthesisPos[this.countEndRightParen()]);
 		else
 			return this.data.slice(this.parenthesisPos[this.parenthesisPos.length - 1] + 1);
 	}
@@ -225,10 +225,4 @@ FinalArea.prototype.submit = function () {
 	this.pendingOperator = null;	
 	
 	return res;
-}
-
-FinalArea.prototype.clearFinalArea = function () {
-	this.data = [];
-	this.pendingOperator = null;
-	this.parenthesisPos = [];
 }
