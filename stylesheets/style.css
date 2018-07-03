@@ -23,6 +23,8 @@ div#calculator {
 }
 /*screens*/
 div p {
+    overflow: auto;
+    white-space: nowrap;
     border: 1px solid #000000;
     margin: 3%;
     padding:1%;
@@ -37,10 +39,15 @@ div p {
 p#result {
     margin-bottom: 0%;
     border-bottom: none;
+    border-bottom-right-radius: unset;
+    border-bottom-left-radius: unset;
+
 }
 
 p#input {
     margin-top: 0%;
+    border-top-right-radius: unset;
+    border-top-left-radius: unset;
 }
 
 table {
