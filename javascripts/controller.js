@@ -130,7 +130,7 @@ function registerGlobalFuncButtons(model, view) {
 		view.update();
 	}
 	
-	document.getElementById("=").addEventListener("click", submitEquation, false);
+	document.getElementById("equals").addEventListener("click", submitEquation, false);
 	document.getElementById("C").addEventListener("click", clearAreas, false);
 	document.getElementById("CE").addEventListener("click", clearInputArea, false);
 }

@@ -125,3 +125,12 @@ CalculatorModel.prototype.submit = function () {
 	this.inputArea.submit();
 	this.inputArea.setResult(this.finalArea.submit(), true);
 }
+
+CalculatorModel.prototype.clear = function () {
+	this.inputArea.clearInputArea();
+	this.finalArea.clearFinalArea();
+}
+
+CalculatorModel.prototype.clearInputArea = function () {
+	this.inputArea.clearInputArea();
+}
