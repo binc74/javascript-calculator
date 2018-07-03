@@ -1,8 +1,11 @@
 div#calculator {
     border: 1px solid #000000;
     margin: 2%;
-    width: 325px;
-    height: 350px;
+    padding:1%;
+    /*width: 525px;
+    height: 550px;*/
+    width: 525px;
+    height: 550px;
     background-color: slategray;
     border-radius: 6px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
@@ -25,7 +28,7 @@ div p {
     padding:1%;
     padding-left: 2%;
     padding-right:2%;
-    min-height: 20px;
+    min-height: 30px;
     width: 90%;
     background-color: lightsteelblue;
     border-radius: 5px;
@@ -63,6 +66,17 @@ button:hover {
 .buttons button{
     width:98%;
     height:98%;
+}
+
+.number{
+    background-color: lightsteelblue;
+}
+
+.op{
+    background-color: lightsalmon;
+}
+#equals{
+    background-color: lightsalmon;
 }
 /*td:nth-child(2) button {
     width: 15px
