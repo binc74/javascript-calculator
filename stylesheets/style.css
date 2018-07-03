@@ -8,9 +8,11 @@ div#calculator {
     box-shadow: 6px 5px 24px #666666;
 }
 
-p#lastCalc {
+/*screens*/
+div p {
     border: 1px solid #000000;
     margin: 2%;
+    margin-left: 4%;
     /*padding: 2%;*/
     min-height: 20px;
     width: 90%;
@@ -18,28 +20,26 @@ p#lastCalc {
 }
 
 p#result {
-     border: 1px solid #000000;
-     margin: 2%;
-     /*padding: 2%;*/
-     min-height: 20px;
-     width: 90%;
-     background-color: lightsteelblue;
- }
+    margin-bottom: 0%;
+    border-bottom: none;
+}
 
 p#input {
-    border: 1px solid #000000;
-    margin: 2%;
-    /*padding: 2%;*/
-    min-height: 20px;
-    width: 90%;
-    background-color: lightsteelblue;
+    margin-top: 0%;
+}
+
+table {
+    width: 100%;
+    height: 75%;
 }
 
 button {
-    box-sizing: content-box;
+    /*box-sizing: content-box;*/
     border: 1px;
     border-radius: 2px;
-    padding: 10px 20px 10px 20px;
+    text-align: center;
+    /*TRBL*/
+    /*padding: 10px 20px 10px 20px;*/
     background-color: #ffffff;
 }
 
@@ -48,7 +48,7 @@ button:hover {
     border-color: black;
 }
 
-td:nth-child(2) button {
+/*td:nth-child(2) button {
     width: 15px
 }
 
@@ -59,4 +59,4 @@ td:nth-child(1) button {
 td:nth-child(1) button.neg {
     /*width: 20px;
     padding: 5px;*/
-}
+}*/
