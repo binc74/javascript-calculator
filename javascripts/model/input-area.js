@@ -9,6 +9,7 @@ function InputArea() {
 	this.hasPeriod = false;		// true if the input read a period (use to avoid adding multiple period into the data)
 	this.isNegative = false;	// true if the input number is negative (use to deal with wired situation)
 	this.isResult = false;		// true if current input number is a result (set by the calculation from finalArea)
+	this.isFinalResult = false; // true if the user just press "=" button
 }
 
 /**
@@ -19,16 +20,6 @@ function InputArea() {
  */
 InputArea.prototype.setFinalArea = function (finalArea) {
 	this.finalArea = finalArea;
-}
-
-/**
- * A getter method for the variable isResult.
- *
- * @return {boolean} true if current input number is a result
- * @author Bin Chen
- */
-InputArea.prototype.isTheResult = function () {
-	return this.isResult;
 }
 
 /**
@@ -43,9 +34,10 @@ InputArea.prototype.push = function (num) {
 		this.data = "";
 		this.hasPeriod = false;
 		this.isNegative = false;
+		this.isFinalResult = false;
 		
 		// remove redundent data in the finalArea if necessary
-		if (this.finalArea.needClear())
+		if (this.finalArea.endWithRightParen())
 			this.finalArea.clear();
 	}
 
@@ -129,7 +121,8 @@ InputArea.prototype.setResult = function (result, isFinalResult) {
 		this.isNegative = false;
 	}	
 	
-	this.isResult = isFinalResult;
+	this.isResult = true;
+	this.isFinalResult = isFinalResult;
 }
 
 /**
