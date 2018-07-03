@@ -13,6 +13,7 @@
 	</head>	
 	<body>
 		<div>
+			<p id="lastCalc" />
 			<p id="result" />
 			<p id="input" />
 		</div>
@@ -66,7 +67,7 @@
 	var view = new CalculatorView(model);
 	var controller = new CalculatorController(model, view);
 	
-	view.initialize("input", "result");	
+	view.initialize("input", "result", "lastCalc");	
 	model.initialize();
 	controller.initialize();		
 	</script>

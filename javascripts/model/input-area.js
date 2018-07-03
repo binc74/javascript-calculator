@@ -4,19 +4,19 @@
 
 function InputArea() {
 	this.data = "";
-	this.stagingArea = null;
+	this.finalArea = null;
 	this.hasPeriod = false;
 	this.isNegative = false;
 	this.haveSubmitted = false;
 }
 
-InputArea.prototype.setStagingArea = function (stagingArea) {
-	this.stagingArea = stagingArea;
+InputArea.prototype.setFinalArea = function (finalArea) {
+	this.finalArea = finalArea;
 }
 
 InputArea.prototype.push = function (num) {	
 	if (this.haveSubmitted) {
-		this.stagingArea.clear();
+		this.finalArea.clear();
 		this.data = "";
 		this.hasPeriod = false;
 		this.isNegative = false;
@@ -66,10 +66,10 @@ InputArea.prototype.toString = function() {
 InputArea.prototype.submit = function () {
 	//if (!this.haveSubmitted) {
 	if (this.data.length == 0) {
-		this.stagingArea.push(0);
+		this.finalArea.push(0);
 	} else {
 		var res = parseFloat(this.data);
-		this.stagingArea.push(this.isNegative ? -res : res);	
+		this.finalArea.push(this.isNegative ? -res : res);	
 	}
 	//}
 	
@@ -88,7 +88,7 @@ InputArea.prototype.setResult = function (result) {
 }
 
 InputArea.prototype.addFunction = function (func) {
-	this.stagingArea.addLeftParen(func);
+	this.finalArea.addLeftParen(func);
 	this.submit();
-	this.stagingArea.addRightParen();
+	this.finalArea.addRightParen();
 }

@@ -14,9 +14,10 @@ function CalculatorView(model) {
  * @param {string} finalAreaId		The id for the finalArea tag
  * @author Bin Chen
  */
-CalculatorView.prototype.initialize = function (inputAreaId, finalAreaId) {
+CalculatorView.prototype.initialize = function (inputAreaId, finalAreaId, calcAreaId) {
 	this.inputAreaId = inputAreaId;
 	this.finalAreaId = finalAreaId;
+	this.calcAreaId = calcAreaId;
 	this.update();
 }
 
@@ -27,5 +28,6 @@ CalculatorView.prototype.initialize = function (inputAreaId, finalAreaId) {
  */
 CalculatorView.prototype.update = function () {
 	document.getElementById(this.inputAreaId).innerHTML = this.model.getInputString();
-	document.getElementById(this.finalAreaId).innerHTML = this.model.getFinalString();	
+	document.getElementById(this.finalAreaId).innerHTML = this.model.getFinalString();
+	document.getElementById(this.calcAreaId).innerHTML = this.model.getLastCalcString();
 }

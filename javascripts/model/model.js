@@ -2,7 +2,6 @@
 
 function CalculatorModel() {
 	this.inputArea = new InputArea();
-	this.stagingArea = new StagingArea();
 	this.finalArea = new FinalArea();
 }
 
@@ -12,8 +11,7 @@ function CalculatorModel() {
  * @author Bin Chen
  */
 CalculatorModel.prototype.initialize = function () {
-	this.inputArea.setStagingArea(this.stagingArea);
-	this.stagingArea.setFinalArea(this.finalArea);
+	this.inputArea.setFinalArea(this.finalArea);
 	this.finalArea.setInputArea(this.inputArea);
 }
 
@@ -34,12 +32,12 @@ CalculatorModel.prototype.addDigit = function (digit) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addOperator = function (op) {	
-	if (!this.stagingArea.isCompleted())
+	if (!this.finalArea.needReplaced())
 		this.inputArea.submit();	
 	
-	this.stagingArea.setPendingOperator(op);
+	this.finalArea.setPendingOperator(op);
 	
-	this.inputArea.setResult(this.stagingArea.evaluate());
+	this.inputArea.setResult(this.finalArea.evaluate());
 }
 
 /**
@@ -49,12 +47,12 @@ CalculatorModel.prototype.addOperator = function (op) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addFunction = function (func) {
-	if (this.stagingArea.isCompleted())
-		this.stagingArea.addFunction(func);
+	if (this.finalArea.needReplaced())
+		this.finalArea.addFunction(func);
 	else
 		this.inputArea.addFunction(func);
 	
-	this.inputArea.setResult(this.stagingArea.evaluate());
+	this.inputArea.setResult(this.finalArea.evaluate());
 }
 
 /**
@@ -63,7 +61,7 @@ CalculatorModel.prototype.addFunction = function (func) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addLeftParen = function () {
-	this.stagingArea.addLeftParen()
+	this.finalArea.addLeftParen()
 	
 	this.inputArea.setResult("");
 }
@@ -75,7 +73,7 @@ CalculatorModel.prototype.addLeftParen = function () {
  */
 CalculatorModel.prototype.addRightParen = function () {
 	this.inputArea.submit();
-	this.inputArea.setResult(this.stagingArea.addRightParen());
+	this.inputArea.setResult(this.finalArea.addRightParen());
 }
 
 /**
@@ -84,7 +82,7 @@ CalculatorModel.prototype.addRightParen = function () {
  * @author Bin Chen
  */
 CalculatorModel.prototype.evaluate = function () {	
-	this.inputArea.setResult(this.stagingArea.evaluate());
+	this.inputArea.setResult(this.finalArea.evaluate());
 }
 
 /**
@@ -104,5 +102,15 @@ CalculatorModel.prototype.getInputString = function () {
  * @author Bin Chen
  */
 CalculatorModel.prototype.getFinalString = function () {
-	return this.finalArea.toString() + " // " + this.stagingArea.toString();
+	return this.finalArea.toString();
+}
+
+/**
+ * Get the string that represents the expression stored in the final area and staging area.
+ *
+ * @return {string} the expression
+ * @author Bin Chen
+ */
+CalculatorModel.prototype.getLastCalcString = function () {
+	return this.finalArea.getCalcString();
 }
