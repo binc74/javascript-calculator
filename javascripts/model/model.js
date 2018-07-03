@@ -38,7 +38,7 @@ CalculatorModel.prototype.addOperator = function (op) {
 	
 	this.finalArea.setPendingOperator(op);
 	
-	this.inputArea.setResult(this.finalArea.evaluate());
+	this.inputArea.setResult(this.finalArea.evaluate(), true);
 }
 
 /**
@@ -53,7 +53,7 @@ CalculatorModel.prototype.addFunction = function (func) {
 	else
 		this.inputArea.addFunction(func);
 	
-	this.inputArea.setResult(this.finalArea.evaluate());
+	this.inputArea.setResult(this.finalArea.evaluate(), true);
 }
 
 /**
@@ -64,7 +64,7 @@ CalculatorModel.prototype.addFunction = function (func) {
 CalculatorModel.prototype.addLeftParen = function () {
 	this.finalArea.addLeftParen()
 	
-	this.inputArea.setResult("");
+	this.inputArea.setResult("", true);
 }
 
 /**
@@ -74,7 +74,7 @@ CalculatorModel.prototype.addLeftParen = function () {
  */
 CalculatorModel.prototype.addRightParen = function () {
 	this.inputArea.submit();
-	this.inputArea.setResult(this.finalArea.addRightParen());
+	this.inputArea.setResult(this.finalArea.addRightParen(), true);
 }
 
 /**
@@ -83,7 +83,7 @@ CalculatorModel.prototype.addRightParen = function () {
  * @author Bin Chen
  */
 CalculatorModel.prototype.evaluate = function () {	
-	this.inputArea.setResult(this.finalArea.evaluate());
+	this.inputArea.setResult(this.finalArea.evaluate(), true);
 }
 
 /**
@@ -114,4 +114,14 @@ CalculatorModel.prototype.getFinalString = function () {
  */
 CalculatorModel.prototype.getLastCalcString = function () {
 	return this.finalArea.getCalcString();
+}
+
+/**
+ * Submit the final equation.
+ *
+ * @author Bin Chen
+ */
+CalculatorModel.prototype.submit = function () {
+	this.inputArea.submit();
+	this.inputArea.setResult(this.finalArea.submit(), true);
 }

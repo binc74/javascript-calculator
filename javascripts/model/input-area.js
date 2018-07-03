@@ -115,10 +115,11 @@ InputArea.prototype.submit = function () {
 /**
  * Set the result to current data.
  *
- * @param {number} result		the result number
+ * @param {number} result				the result number
+ * @param {boolean} isFinalResult		true if this is the final result (after pressing equal sign)
  * @author Bin Chen
  */
-InputArea.prototype.setResult = function (result) {
+InputArea.prototype.setResult = function (result, isFinalResult) {
 	this.data = result.toString();
 	
 	if (result < 0) {
@@ -128,7 +129,7 @@ InputArea.prototype.setResult = function (result) {
 		this.isNegative = false;
 	}	
 	
-	this.isResult = true;
+	this.isResult = isFinalResult;
 }
 
 /**

@@ -40,7 +40,7 @@ Calculation.getResult = function (tokens) {
 function parseExpr(tokens) {
 	var value = parseTerm(tokens);
 
-	while (tokens.length > 0 && Consts.ADD_OP_SET.has(tokens[0])) {			
+	while (tokens.length > 0 && Calculation.ADD_OP_SET.has(tokens[0])) {			
 		switch (tokens.shift()) {
 			case '+':
 				value += parseTerm(tokens);
@@ -58,7 +58,7 @@ function parseExpr(tokens) {
 function parseTerm(tokens) {
 	var value = parseFactor(tokens);
 	
-	while (tokens.length > 0 && Consts.MULT_OP_SET.has(tokens[0])) {
+	while (tokens.length > 0 && Calculation.MULT_OP_SET.has(tokens[0])) {
 		switch (tokens.shift()) {
 			case '*':
 				value *= parseFactor(tokens);

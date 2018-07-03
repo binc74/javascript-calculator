@@ -19,6 +19,7 @@ CalculatorController.prototype.initialize = function () {
 	registerOpButtons(this.model, this.view);
 	registerParenthesis(this.model, this.view);
 	registerFuncButtons(this.model);
+	registerGlobalFuncButtons(model, view);
 }
 
 /**
@@ -93,7 +94,7 @@ function registerParenthesis(model, view) {
  * @param {CalculatorView} view		The calculator view
  * @author Bin Chen
  */
-function registerFuncButtons() {
+function registerFuncButtons(model, view) {
 	var addFunction = function () {
 		model.addFunction(this.value);
 		view.update();
@@ -105,6 +106,18 @@ function registerFuncButtons() {
 		funcButtonList[i].addEventListener("click", addFunction, false);
 }
 
-function registerGlobalFuncButtons() {
+/**
+ * Register the global functions buttons with functions.
+ *
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ * @author Bin Chen
+ */
+function registerGlobalFuncButtons(model, view) {
+	var submitEquation = function () {
+		model.submit();
+		view.update();
+	}
 	
+	document.getElementById("=").addEventListener("click", submitEquation, false);
 }

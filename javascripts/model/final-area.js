@@ -182,26 +182,47 @@ FinalArea.prototype.clear = function () {
 }
 
 /**
- * return the string representation of the data.
+ * Return the string representation of the data.
  *
  * @return {number} the evaluated value
  * @author Bin Chen
  */
-FinalArea.prototype.toString = function() {
+FinalArea.prototype.toString = function () {
 	return this.data.reduce(function (a, b) {
 		return a + b.toString() + " ";
 	}, "") + (this.pendingOperator == null ? "" : this.pendingOperator + " ");
 }
 
 /**
- * return the expression and result of current calculation.
+ * Return the expression and result of current calculation.
  *
  * @return {number} the evaluated value
  * @author Bin Chen
  */
-FinalArea.prototype.getCalcString = function() {
+FinalArea.prototype.getCalcString = function () {
 	if (this.data.length == 0)
 		return "No Calculation yet.";
 	
 	return  this.getEvaluationList().join(" ") + " = " + this.evaluate();
+}
+
+/**
+ * Submit the final expression and clear the expression.
+ *
+ * @return {number} the result
+ * @author Bin Chen
+ */
+FinalArea.prototype.submit = function () {
+	// auto filling the missing parenthesis
+	for (var i = 0; i < this.parenthesisPos.length; ++i)
+		this.data.push(")");
+	
+	// get the result
+	var res = Calculation.getResult(this.data);
+	
+	// clear the data
+	this.data = [];
+	this.pendingOperator = null;	
+	
+	return res;
 }
