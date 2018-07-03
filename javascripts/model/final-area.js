@@ -26,7 +26,7 @@ FinalArea.prototype.setInputArea = function (inputArea) {
  * @return {boolean} whether there is some data need to be clear
  * @author Bin Chen
  */
-FinalArea.prototype.needClear = function () {
+FinalArea.prototype.endWithRightParen = function () {
 	return this.data.length > 0 && this.pendingOperator == null &&
 		this.data[this.data.length - 1] == ')';
 }

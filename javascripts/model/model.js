@@ -33,12 +33,12 @@ CalculatorModel.prototype.addDigit = function (digit) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addOperator = function (op) {	
-	if (!(this.finalArea.needClear() || this.inputArea.isTheResult()))
+	if (!this.inputArea.isResult || this.inputArea.isFinalResult)
 		this.inputArea.submit();	
 	
 	this.finalArea.setPendingOperator(op);
 	
-	this.inputArea.setResult(this.finalArea.evaluate(), true);
+	this.inputArea.setResult(this.finalArea.evaluate(), false);
 }
 
 /**
@@ -48,12 +48,12 @@ CalculatorModel.prototype.addOperator = function (op) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addFunction = function (func) {
-	if (this.finalArea.needClear())
+	if (this.finalArea.endWithRightParen())
 		this.finalArea.addFunction(func);
 	else
 		this.inputArea.addFunction(func);
 	
-	this.inputArea.setResult(this.finalArea.evaluate(), true);
+	this.inputArea.setResult(this.finalArea.evaluate(), false);
 }
 
 /**
@@ -64,7 +64,7 @@ CalculatorModel.prototype.addFunction = function (func) {
 CalculatorModel.prototype.addLeftParen = function () {
 	this.finalArea.addLeftParen()
 	
-	this.inputArea.setResult("", true);
+	this.inputArea.setResult("", false);
 }
 
 /**
@@ -74,7 +74,7 @@ CalculatorModel.prototype.addLeftParen = function () {
  */
 CalculatorModel.prototype.addRightParen = function () {
 	this.inputArea.submit();
-	this.inputArea.setResult(this.finalArea.addRightParen(), true);
+	this.inputArea.setResult(this.finalArea.addRightParen(), false);
 }
 
 /**
@@ -83,7 +83,7 @@ CalculatorModel.prototype.addRightParen = function () {
  * @author Bin Chen
  */
 CalculatorModel.prototype.evaluate = function () {	
-	this.inputArea.setResult(this.finalArea.evaluate(), true);
+	this.inputArea.setResult(this.finalArea.evaluate(), false);
 }
 
 /**
