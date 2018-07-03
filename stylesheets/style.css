@@ -1,0 +1,62 @@
+div#calculator {
+    border: 1px solid #000000;
+    margin: 2%;
+    width: 325px;
+    height: 350px;
+    background-color: slategray;
+    border-radius: 6px;
+    box-shadow: 6px 5px 24px #666666;
+}
+
+p#lastCalc {
+    border: 1px solid #000000;
+    margin: 2%;
+    /*padding: 2%;*/
+    min-height: 20px;
+    width: 90%;
+    background-color: lightsteelblue;
+}
+
+p#result {
+     border: 1px solid #000000;
+     margin: 2%;
+     /*padding: 2%;*/
+     min-height: 20px;
+     width: 90%;
+     background-color: lightsteelblue;
+ }
+
+p#input {
+    border: 1px solid #000000;
+    margin: 2%;
+    /*padding: 2%;*/
+    min-height: 20px;
+    width: 90%;
+    background-color: lightsteelblue;
+}
+
+button {
+    box-sizing: content-box;
+    border: 1px;
+    border-radius: 2px;
+    padding: 10px 20px 10px 20px;
+    background-color: #ffffff;
+}
+
+button:hover {
+    background-color: darkseagreen;
+    border-color: black;
+}
+
+td:nth-child(2) button {
+    width: 15px
+}
+
+td:nth-child(1) button {
+    width: 20px
+}
+
+td:nth-child(1) button.neg {
+    /*width: 20px;
+    padding: 5px;*/
+}

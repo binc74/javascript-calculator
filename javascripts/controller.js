@@ -18,8 +18,8 @@ CalculatorController.prototype.initialize = function () {
 	registerNumButtons(this.model, this.view);
 	registerOpButtons(this.model, this.view);
 	registerParenthesis(this.model, this.view);
-	registerFuncButtons(this.model);
-	registerGlobalFuncButtons(model, view);
+	registerFuncButtons(this.model, this.view);
+	registerGlobalFuncButtons(this.model, this.view);
 }
 
 /**
