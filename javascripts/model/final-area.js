@@ -19,7 +19,13 @@ FinalArea.prototype.setInputArea = function (inputArea) {
 	this.inputArea = inputArea;
 }
 
-FinalArea.prototype.needReplaced = function () {
+/**
+ * returns true if there is data need to be clear.
+ *
+ * @return {boolean} whether there is some data need to be clear
+ * @author Bin Chen
+ */
+FinalArea.prototype.needClear = function () {
 	return this.data.length > 0 && this.pendingOperator == null &&
 		this.data[this.data.length - 1] == ')';
 }
@@ -171,7 +177,7 @@ FinalArea.prototype.evaluate = function () {
  * @author Bin Chen
  */
 FinalArea.prototype.clear = function () {
-	if (this.needReplaced())
+	if (this.needClear())
 		this.data = this.data.slice(0, this.parenthesisPos.pop());
 }
 

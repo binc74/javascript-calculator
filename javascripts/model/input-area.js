@@ -39,7 +39,7 @@ InputArea.prototype.push = function (num) {
 
 InputArea.prototype.toString = function() {
 	var res = "";
-	var metPeriod = false || !this.hasPeriod;
+	var metPeriod = !this.data.includes(".");
 	var count = 0;
 	
 	for (var i = this.data.length - 1; i > -1; --i) {
@@ -64,14 +64,14 @@ InputArea.prototype.toString = function() {
 }
 
 InputArea.prototype.submit = function () {
-	//if (!this.haveSubmitted) {
-	if (this.data.length == 0) {
-		this.finalArea.push(0);
-	} else {
-		var res = parseFloat(this.data);
-		this.finalArea.push(this.isNegative ? -res : res);	
+	if (!this.haveSubmitted) {
+		if (this.data.length == 0) {
+			this.finalArea.push(0);
+		} else {
+			var res = parseFloat(this.data);
+			this.finalArea.push(this.isNegative ? -res : res);	
+		}
 	}
-	//}
 	
 	this.haveSubmitted = true;
 }
@@ -85,6 +85,8 @@ InputArea.prototype.setResult = function (result) {
 	} else {
 		this.isNegative = false;
 	}	
+	
+	this.haveSubmitted = true;
 }
 
 InputArea.prototype.addFunction = function (func) {

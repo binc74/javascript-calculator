@@ -32,7 +32,7 @@ CalculatorModel.prototype.addDigit = function (digit) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addOperator = function (op) {	
-	if (!this.finalArea.needReplaced())
+	if (!this.finalArea.needClear())
 		this.inputArea.submit();	
 	
 	this.finalArea.setPendingOperator(op);
@@ -47,7 +47,7 @@ CalculatorModel.prototype.addOperator = function (op) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addFunction = function (func) {
-	if (this.finalArea.needReplaced())
+	if (this.finalArea.needClear())
 		this.finalArea.addFunction(func);
 	else
 		this.inputArea.addFunction(func);
