@@ -1,16 +1,13 @@
 // Created by Bin Chen in 7/1/2018
+// Implemented by Bin Chen 7/2/2018
 
-// Constant
-
-function Consts() {
+function Calculation() {
 }
 
 // Adding class variables
-Consts.OP_SET = new Set("+-*/%");
-Consts.ADD_OP_SET = new Set("+-");
-Consts.MULT_OP_SET = new Set("*/%");
-Consts.PARANTHESIS = new Set("()");
-
+Calculation.OP_SET = new Set("+-*/%");
+Calculation.ADD_OP_SET = new Set("+-");
+Calculation.MULT_OP_SET = new Set("*/%");
 
 // for calculation
 
@@ -26,7 +23,7 @@ Consts.PARANTHESIS = new Set("()");
  * add-op -> + | -
  * mult-op -> * | / | %
  */
-function getResult(tokens) {
+Calculation.getResult = function (tokens) {
 	if (tokens.length == 0)
 		return 0;
 

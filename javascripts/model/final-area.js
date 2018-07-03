@@ -169,7 +169,7 @@ FinalArea.prototype.getEvaluationList = function () {
  * @author Bin Chen
  */
 FinalArea.prototype.evaluate = function () {
-	return getResult(this.getEvaluationList());
+	return Calculation.getResult(this.getEvaluationList());
 }
 
 /**
