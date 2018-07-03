@@ -226,3 +226,9 @@ FinalArea.prototype.submit = function () {
 	
 	return res;
 }
+
+FinalArea.prototype.clearFinalArea = function () {
+	this.data = [];
+	this.pendingOperator = null;
+	this.parenthesisPos = [];
+}

@@ -136,3 +136,10 @@ InputArea.prototype.addFunction = function (func) {
 	this.submit();
 	this.finalArea.addRightParen();
 }
+
+InputArea.prototype.clearInputArea = function () {
+	this.data = "";				// the input number in string format
+	this.hasPeriod = false;		// true if the input read a period (use to avoid adding multiple period into the data)
+	this.isNegative = false;	// true if the input number is negative (use to deal with wired situation)
+	this.isResult = false;		// true if current input number is a result (set by the calculation from finalArea)
+}

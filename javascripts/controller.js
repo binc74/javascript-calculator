@@ -118,6 +118,19 @@ function registerGlobalFuncButtons(model, view) {
 		model.submit();
 		view.update();
 	}
+
+	var clearInputArea = function () {
+		model.clearInputArea();
+		view.update();
+	}
+	
+
+	var clearAreas = function () {
+		model.clear();
+		view.update();
+	}
 	
 	document.getElementById("=").addEventListener("click", submitEquation, false);
+	document.getElementById("C").addEventListener("click", clearAreas, false);
+	document.getElementById("CE").addEventListener("click", clearInputArea, false);
 }
