@@ -141,6 +141,7 @@ FinalArea.prototype.addLeftParen = function (funcName, position) {
  */
 FinalArea.prototype.addRightParen = function () {
 	this.data.push(")");	
+	this.parenthesisPos.pop();
 	
 	return this.evaluate();
 }
@@ -169,6 +170,8 @@ FinalArea.prototype.getEvaluationList = function () {
  * @author Bin Chen
  */
 FinalArea.prototype.evaluate = function () {
+	console.log(this.parenthesisPos.join(" "));
+	
 	return Calculation.getResult(this.getEvaluationList());
 }
 

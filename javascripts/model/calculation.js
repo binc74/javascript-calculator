@@ -21,7 +21,7 @@ Calculation.MULT_OP_SET = new Set("*/%^");
  * function -> func param )
  * func -> neg | root | log (
  * add-op -> + | -
- * mult-op -> * | / | %
+ * mult-op -> * | / | % | ^
  */
 Calculation.getResult = function (tokens) {
 	if (tokens.length == 0)
@@ -138,8 +138,8 @@ function parseFunction(tokens) {
 		case "sqr(":
 			return param * param;
 
-		case "1/x(":
-			return 1/param;
+		case "1/(":
+			return 1 / param;
 
 		case "e^(":
 			return Math.exp(param);
