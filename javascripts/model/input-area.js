@@ -142,6 +142,7 @@ InputArea.prototype.clearInputArea = function () {
 	this.hasPeriod = false;	
 	this.isNegative = false;
 	this.isResult = false;
+	this.isFinalResult = false;
 }
 
 InputArea.prototype.setPi = function () {
@@ -149,6 +150,7 @@ InputArea.prototype.setPi = function () {
 	this.hasPeriod = true;	
 	this.isNegative = false;
 	this.isResult = true;
+	this.isFinalResult = true;
 }
 
 /**
