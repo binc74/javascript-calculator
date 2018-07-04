@@ -129,7 +129,9 @@ CalculatorModel.prototype.getLastCalcString = function () {
  * Modified by Jeb Alawi 7/3/2018 - push expression and answer to history
  */
 CalculatorModel.prototype.submit = function () {
-	this.inputArea.submit();
+	if (!this.inputArea.isResult || this.inputArea.isFinalResult)
+		this.inputArea.submit();
+	
     expression = this.finalArea.data.join(" ");
     answer = this.finalArea.submit();
     entry = expression + " = " + answer;
