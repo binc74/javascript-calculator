@@ -102,6 +102,10 @@ button:hover {
 #equals{
     background-color: lightsalmon;
 }
+
+.corner{
+	vertical-align:super;
+}
 /*td:nth-child(2) button {
     width: 15px
 }

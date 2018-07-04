@@ -5,9 +5,9 @@ function Calculation() {
 }
 
 // Adding class variables
-Calculation.OP_SET = new Set("+-*/%");
+Calculation.OP_SET = new Set("+-*/%^");
 Calculation.ADD_OP_SET = new Set("+-");
-Calculation.MULT_OP_SET = new Set("*/%");
+Calculation.MULT_OP_SET = new Set("*/%^");
 
 // for calculation
 
@@ -68,6 +68,10 @@ function parseTerm(tokens) {
 				
 			case '%':
 				value %= parseFactor(tokens);
+				break;
+				
+			case '^':
+				value = Math.pow(value, parseFactor(tokens));
 				break;
 		}		
 	}
