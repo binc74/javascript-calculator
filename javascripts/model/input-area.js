@@ -138,8 +138,27 @@ InputArea.prototype.addFunction = function (func) {
 }
 
 InputArea.prototype.clearInputArea = function () {
-	this.data = "";				// the input number in string format
-	this.hasPeriod = false;		// true if the input read a period (use to avoid adding multiple period into the data)
-	this.isNegative = false;	// true if the input number is negative (use to deal with wired situation)
-	this.isResult = false;		// true if current input number is a result (set by the calculation from finalArea)
+	this.data = "";	
+	this.hasPeriod = false;	
+	this.isNegative = false;
+	this.isResult = false;
 }
+
+InputArea.prototype.setPi = function () {
+	this.data = Math.PI.toString();
+	this.hasPeriod = true;	
+	this.isNegative = false;
+	this.isResult = true;
+}
+
+/**
+ * Remove a digit.
+ * @author Jeb Alawi
+ */
+InputArea.prototype.remove = function () {
+	if (this.data.ength == 0)
+		this.isNegative = false;
+	else
+		this.data = this.data.slice(0,this.data.length-1);
+}
+

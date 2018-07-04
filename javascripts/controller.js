@@ -133,7 +133,7 @@ function registerGlobalFuncButtons(model, view) {
 	}
 
 	var pi = function () {
-		model.addDigit(Math.PI.toString());
+		model.setPi();
 		view.update();
 	}
 
