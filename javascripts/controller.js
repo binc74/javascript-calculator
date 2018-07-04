@@ -1,6 +1,7 @@
 // Created by Bin Chen 6/28/2018
 // Modified by Bin Chen 6/28/2018 - Implemented registerNumButtons function
 // Modified by Bin Chen 6/29/2018 - Implemented registerOpButtons function
+// Modified by Jeb Alawi 7/4/2018 - added pi and back global functions
 
 // Controller for the calculator
 
@@ -112,6 +113,8 @@ function registerFuncButtons(model, view) {
  * @param {CalculatorModel} model	The calculator model
  * @param {CalculatorView} view		The calculator view
  * @author Bin Chen
+ *
+ * Modified by Jeb Alawi 7/4/2018 - added pi and back
  */
 function registerGlobalFuncButtons(model, view) {
 	var submitEquation = function () {
@@ -129,7 +132,20 @@ function registerGlobalFuncButtons(model, view) {
 		view.update();
 	}
 
+	var pi = function () {
+		model.addDigit(Math.PI.toString());
+		view.update();
+	}
+
+	var back = function () {
+		model.removeDigit();
+		view.update();
+	}
+
 	document.getElementById("equals").addEventListener("click", submitEquation, false);
 	document.getElementById("C").addEventListener("click", clearAreas, false);
 	document.getElementById("CE").addEventListener("click", clearInputArea, false);
+    document.getElementById("pi").addEventListener("click", pi, false);
+    document.getElementById("back").addEventListener("click", back, false);
+
 }

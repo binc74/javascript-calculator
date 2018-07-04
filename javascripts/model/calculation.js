@@ -73,6 +73,7 @@ function parseTerm(tokens) {
 			case '^':
 				value = Math.pow(value, parseFactor(tokens));
 				break;
+
 		}		
 	}
 	
@@ -120,7 +121,7 @@ function parseFunction(tokens) {
 			return Math.sqrt(param);
 			
 		case "log(":
-			return Math.log(param);
+			return Math.log10(param);
 
 		case "10^(":
 			return Math.pow(10, param);
@@ -133,6 +134,20 @@ function parseFunction(tokens) {
 
 		case "fact(":
 			return factorial(param);
+
+		case "sqr(":
+			return param * param;
+
+		case "1/x(":
+			return 1/param;
+
+		case "e^(":
+			return Math.exp(param);
+
+		case "ln(":
+			return Math.log(param);
+
+
 	}
 		
 	return 0;

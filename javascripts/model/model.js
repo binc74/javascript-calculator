@@ -1,6 +1,6 @@
 // Created by Bin Chen in 7/1/2018
 // Modified by Jeb Alawi on 7/3/2018 - Added getHistoryHTML
-
+// Modified by Jeb Alawi on 7/4/2018 - Added removeDigit
 
 function CalculatorModel() {
 	this.inputArea = new InputArea();
@@ -30,6 +30,14 @@ CalculatorModel.prototype.initialize = function () {
  */
 CalculatorModel.prototype.addDigit = function (digit) {
 	this.inputArea.push(digit);
+}
+
+/**
+ * Remove a digit.
+ * @author Jeb Alawi
+ */
+CalculatorModel.prototype.removeDigit = function () {
+    this.inputArea.data = this.inputArea.data.substr(0,this.inputArea.data.length-1);
 }
 
 /**
