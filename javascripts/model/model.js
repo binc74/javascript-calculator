@@ -78,7 +78,7 @@ CalculatorModel.prototype.addFunction = function (func) {
 CalculatorModel.prototype.addLeftParen = function () {
 	this.finalArea.addLeftParen()
 	
-	this.inputArea.setResult("", false);
+	this.inputArea.setResult("", true);
 }
 
 /**
