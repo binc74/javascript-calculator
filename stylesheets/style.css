@@ -200,12 +200,14 @@ li button:hover{
     height:100%;
 }
 p#history{
+    overflow: scroll;
     border: unset;
     height:95%;
+    width: 100%;
     margin:5px;
 }
 div.history {
-    overflow: auto;
+    overflow: hidden;
     white-space: nowrap;
     border: 1px solid #000000;
     margin: 3%;
