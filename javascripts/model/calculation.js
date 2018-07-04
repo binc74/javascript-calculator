@@ -135,8 +135,10 @@ function parseFunction(tokens) {
 }
 
 function factorial(number){
-	if(number == 1){
-		return 1;
-	}
-	return number * factorial(number - 1);
+	var ans = 1;
+	
+	for (var i = 1; i <= number; ++i)
+		ans *= i;
+	
+	return ans;
 }
