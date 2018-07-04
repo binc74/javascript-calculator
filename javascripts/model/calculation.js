@@ -27,11 +27,7 @@ Calculation.getResult = function (tokens) {
 	if (tokens.length == 0)
 		return 0;
 
-
-	var res = parseExpr(tokens);
-
-
-	return res;
+	return parseExpr(tokens);
 }
 
  

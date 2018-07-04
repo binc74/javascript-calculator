@@ -87,7 +87,9 @@ CalculatorModel.prototype.addLeftParen = function () {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addRightParen = function () {
-	this.inputArea.submit();
+	if (!this.inputArea.isResult || this.inputArea.isFinalResult)
+		this.inputArea.submit();
+	
 	this.inputArea.setResult(this.finalArea.addRightParen(), false);
 }
 

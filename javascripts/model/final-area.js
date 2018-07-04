@@ -6,6 +6,7 @@
 function FinalArea() {
 	this.data = [];
 	this.pendingOperator = null;
+	this.lastLeftParen = 0;
 	this.parenthesisPos = [];
 	this.inputArea = null;	
 }
@@ -53,8 +54,10 @@ FinalArea.prototype.push = function (ele) {
  * @author Bin Chen
  */
 FinalArea.prototype.setPendingOperator = function (op) {
-	if (this.data[this.data.length - 1] == ')') 
-		this.parenthesisPos.pop();
+	if (this.parenthesisPos.length > 0)
+		this.lastLeftParen = this.parenthesisPos[this.parenthesisPos.length - 1];
+	else
+		this.lastLeftParen = 0;
 	
 	this.pendingOperator = op;
 }
@@ -66,13 +69,10 @@ FinalArea.prototype.setPendingOperator = function (op) {
  * @author Bin Chen
  */
 FinalArea.prototype.addFunction = function (func) {
-	var lastLeftParenIndex = this.parenthesisPos[this.parenthesisPos.length - 1];
-	
-	if (this.data[lastLeftParenIndex] == "(") {
-		this.data[lastLeftParenIndex] = func;
+	if (this.data[this.lastLeftParen] == "(") {
+		this.data[this.lastLeftParen] = func;
 	} else {
-		var parenPosition = this.parenthesisPos[this.parenthesisPos.length - 
-				this.countEndRightParen()]
+		var parenPosition = this.lastLeftParen;
 		
 		this.addLeftParen(func, parenPosition);	
 		this.addRightParen();
@@ -132,6 +132,7 @@ FinalArea.prototype.addLeftParen = function (funcName, position) {
 	}
 	
 	this.parenthesisPos.push(currParenPosition);
+	this.lastLeftParen = currParenPosition;
 }
 
 /**
@@ -141,7 +142,7 @@ FinalArea.prototype.addLeftParen = function (funcName, position) {
  */
 FinalArea.prototype.addRightParen = function () {
 	this.data.push(")");	
-	this.parenthesisPos.pop();
+	this.lastLeftParen = this.parenthesisPos.pop();
 	
 	return this.evaluate();
 }
@@ -153,11 +154,11 @@ FinalArea.prototype.addRightParen = function () {
  * @author Bin Chen
  */
 FinalArea.prototype.getEvaluationList = function () {
-	if (this.parenthesisPos.length > 0) {
+	if (this.lastLeftParen > 0) {
 		if (this.data[this.data.length - 1] == ')')
-			return this.data.slice(this.parenthesisPos[this.countEndRightParen()]);
+			return this.data.slice(this.lastLeftParen);
 		else
-			return this.data.slice(this.parenthesisPos[this.parenthesisPos.length - 1] + 1);
+			return this.data.slice(this.lastLeftParen + 1);
 	}
 	
 	return this.data.slice();
@@ -170,7 +171,10 @@ FinalArea.prototype.getEvaluationList = function () {
  * @author Bin Chen
  */
 FinalArea.prototype.evaluate = function () {
-	console.log(this.parenthesisPos.join(" "));
+	console.log("////////");
+	console.log("current paren pos: [" + this.parenthesisPos.join(" ") + "]");
+	console.log("Last paren: " + this.lastLeftParen);
+	console.log("Current expr: " + this.getEvaluationList().join(" "));
 	
 	return Calculation.getResult(this.getEvaluationList());
 }
@@ -181,7 +185,7 @@ FinalArea.prototype.evaluate = function () {
  * @author Bin Chen
  */
 FinalArea.prototype.clear = function () {
-	this.data = this.data.slice(0, this.parenthesisPos.pop());
+	this.data = this.data.slice(0, this.lastLeftParen);
 }
 
 /**
@@ -203,10 +207,12 @@ FinalArea.prototype.toString = function () {
  * @author Bin Chen
  */
 FinalArea.prototype.getCalcString = function () {
-	if (this.data.length == 0)
+	var list = this.getEvaluationList();
+	
+	if (list.length == 0 || this.data.length == 0)
 		return "No Calculation yet.";
 	
-	return  this.getEvaluationList().join(" ") + " = " + this.evaluate();
+	return this.getEvaluationList().join(" ") + " = " + this.evaluate();
 }
 
 /**
@@ -234,4 +240,5 @@ FinalArea.prototype.clearFinalArea = function () {
 	this.data = [];
 	this.pendingOperator = null;
 	this.parenthesisPos = [];
+	this.lastLeftParen = 0;
 }
