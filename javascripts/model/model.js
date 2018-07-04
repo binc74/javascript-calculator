@@ -37,7 +37,7 @@ CalculatorModel.prototype.addDigit = function (digit) {
  * @author Jeb Alawi
  */
 CalculatorModel.prototype.removeDigit = function () {
-    this.inputArea.data = this.inputArea.data.substr(0,this.inputArea.data.length-1);
+	this.inputArea.remove();
 }
 
 /**
@@ -154,4 +154,8 @@ CalculatorModel.prototype.clear = function () {
 
 CalculatorModel.prototype.clearInputArea = function () {
 	this.inputArea.clearInputArea();
+}
+
+CalculatorModel.prototype.setPi = function () {
+	this.inputArea.setPi();
 }
