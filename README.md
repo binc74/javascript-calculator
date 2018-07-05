@@ -39,6 +39,7 @@ We choose to implement a scientific calculator that is pretty similar to the one
 
 * parenthesis
 	* the parenthesis should work and calculate properly
+	* implements many confusing features MS scientific calculator have
 
 * Input display and checking
 	* in the input area, every 3 digits of the number is seperated by comma
@@ -76,6 +77,9 @@ We choose to implement a scientific calculator that is pretty similar to the one
 	* otherwise, the function will read the number in the input area and be append to the expression.
 		* e.g. when input area: 43, expression: 4 + (3 + , then after pressing cos, the expression wil become 4 + (3 + cos(43)
 		
+* Like the MS calculator, after the user just enter a ")", if the user enter a digit, the latest closed parenthesis and its content will be deleted
+	* e.g. if after user enter a ")", and the expression looks like this: 3 + (2 * 3), then if user press 1, the expression becomes 3 +
+
 * The above explaination may be confusing, just try it.
 
 ### Roles
