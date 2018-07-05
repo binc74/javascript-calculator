@@ -7,7 +7,6 @@ function CalculatorModel() {
 	this.finalArea = new FinalArea();
 	this.history = new History();
 	this.memory = new Memory();
-	this.isRadian = false;
 }
 /*
  * Clear the history.
@@ -93,7 +92,7 @@ CalculatorModel.prototype.getHistoryHTML = function () {
  * @author Josh Wright
  */
 CalculatorModel.prototype.setUnits = function () {
-    this.inputArea.isRadians = !this.inputArea.isRadians;
+    this.finalArea.isRadian = !this.finalArea.isRadian;
 };
 
 /*
@@ -102,7 +101,7 @@ CalculatorModel.prototype.setUnits = function () {
  * @author Josh Wright
  */
 CalculatorModel.prototype.getUnits = function () {
-    if(this.inputArea.isRadians){
+    if(this.finalArea.isRadian){
         return "Radians";
     }
     else{
@@ -195,8 +194,8 @@ CalculatorModel.prototype.addRightParen = function () {
  *
  * @author Bin Chen
  */
-CalculatorModel.prototype.evaluate = function () {	
-	this.inputArea.setResult(this.finalArea.evaluate(isRadian), false);
+CalculatorModel.prototype.evaluate = function () {
+	this.inputArea.setResult(this.finalArea.evaluate(), false);
 };
 
 /**
@@ -240,7 +239,7 @@ CalculatorModel.prototype.submit = function () {
 		this.inputArea.submit();
 	
     expression = this.finalArea.data.join(" ");
-    answer = this.finalArea.submit(isRadian);
+    answer = this.finalArea.submit();
     entry = expression + " = " + answer;
     this.history.entries.push(entry);
 	this.inputArea.setResult(answer, true);
