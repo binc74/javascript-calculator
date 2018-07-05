@@ -95,6 +95,6 @@ in the memory stack.
 Jeb Alawi: Implemented History, CSS styling, show/hide feature for displaying and hiding the history and memory sidebar. 
 Implemented back button and some functions
 
-Bin Chen: Implement the calculation part
+Bin Chen: Implement the calculation part, design the object layout and the impplementation of the MS style scientific calculator
 
 Houyi Fan: 
