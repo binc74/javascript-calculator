@@ -43,12 +43,21 @@ CalculatorModel.prototype.memoryClear = function () {
     this.memory.memoryClear();
 };
 /*
+ * Perform a memory clear.
+ *
+ * @author Josh Wright
+ */
+
+CalculatorModel.prototype.memoryClearAll = function () {
+    this.memory.memoryClearAll();
+};
+/*
  * Perform a memory remove.
  *
  * @author Josh Wright
  */
-CalculatorModel.prototype.memoryRemove = function (entry) {
-    this.memory.memoryRemove(entry);
+CalculatorModel.prototype.memoryRecall = function () {
+    this.inputArea.setData(this.memory.memory[0]);
 };
 /*
  * Perform a memory store.

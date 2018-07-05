@@ -78,20 +78,25 @@ function registerMemoryButtons(model, view) {
         model.memoryStore(parseInt(model.inputArea.returnData()));
         view.update();
     };
-    var memoryRemove = function () {
-        model.memoryRemove();
+    var memoryRecall = function () {
+        model.memoryRecall();
         view.update();
     };
     var memoryClear = function () {
         model.memoryClear();
         view.update();
     };
+    var memoryClearAll = function () {
+        model.memoryClearAll();
+        view.update();
+    };
     // get all the button tags with class "number"
     document.getElementById("M+").addEventListener("click", memoryAdd, false);
     document.getElementById("M-").addEventListener("click", memorySubtract, false);
     document.getElementById("MS").addEventListener("click", memoryStore, false);
-    document.getElementById("MR").addEventListener("click", memoryRemove, false);
+    document.getElementById("MR").addEventListener("click", memoryRecall, false);
     document.getElementById("MC").addEventListener("click", memoryClear, false);
+    document.getElementById("MCA").addEventListener("click", memoryClearAll, false);
 }
 /**
  * Register the number buttons with functions.

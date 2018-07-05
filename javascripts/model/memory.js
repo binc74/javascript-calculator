@@ -19,7 +19,7 @@ Memory.prototype.memoryStore = function (entry) {
  *
  * @author Josh Wright
  */
-Memory.prototype.memoryRemove = function () {
+Memory.prototype.memoryClear = function () {
     this.memory.shift();
 };
 
@@ -28,7 +28,7 @@ Memory.prototype.memoryRemove = function () {
  *
  * @author Josh Wright
  */
-Memory.prototype.memoryClear = function () {
+Memory.prototype.memoryClearAll = function () {
     this.memory = [];
 };
 

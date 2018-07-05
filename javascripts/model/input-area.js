@@ -21,6 +21,15 @@ function InputArea() {
 InputArea.prototype.setFinalArea = function (finalArea) {
 	this.finalArea = finalArea;
 }
+/**
+ * Set the data for the inputArea.
+ *
+ * @param {data} data		The data that is being set
+ * @author Josh Wright
+ */
+InputArea.prototype.setData = function (data) {
+    this.data = data;
+}
 
 /**
  * Push the num character into the end of data string.
