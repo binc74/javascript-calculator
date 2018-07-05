@@ -219,7 +219,7 @@ div.history {
     padding-right:2%;
     min-height: 30px;
     width: 90%;
-    background-color: lightsteelblue;
+    background-color: slategray;
     border-radius: 5px;
 }
 
@@ -276,7 +276,7 @@ div.memory {
     padding-right:2%;
     min-height: 30px;
     width: 90%;
-    background-color: lightsteelblue;
+    background-color: slategray;
     border-radius: 5px;
 }
 /*td:nth-child(2) button {

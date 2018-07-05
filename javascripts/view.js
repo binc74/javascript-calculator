@@ -38,5 +38,6 @@ CalculatorView.prototype.update = function () {
 	document.getElementById(this.calcAreaId).innerHTML = this.model.getLastCalcString();
     document.getElementById(this.historyId).innerHTML = this.model.getHistoryHTML();
     document.getElementById(this.memoryId).innerHTML = this.model.getMemoryHTML();
+    document.getElementById("units").innerHTML = this.model.getUnits();
 
 };

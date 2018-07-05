@@ -73,9 +73,32 @@ CalculatorModel.prototype.getMemoryHTML = function () {
  * @author Jeb Alawi
  */
 CalculatorModel.prototype.getHistoryHTML = function () {
-    return this.history.entries.join("<br />")
+    return this.history.entries.join("<br />");
 };
 
+
+/*
+ * Sets whether the calculator is using degrees or radians.
+ *
+ * @author Josh Wright
+ */
+CalculatorModel.prototype.setUnits = function () {
+    this.inputArea.isRadians = !this.inputArea.isRadians;
+};
+
+/*
+ * Returns whether the calculator is using degrees or radians.
+ *
+ * @author Josh Wright
+ */
+CalculatorModel.prototype.getUnits = function () {
+    if(this.inputArea.isRadians){
+        return "Radians";
+    }
+    else{
+        return "Degrees";
+    }
+};
 
 /*
  * Initialize the Model for the calculator.

@@ -10,6 +10,7 @@ function InputArea() {
 	this.isNegative = false;	// true if the input number is negative (use to deal with wired situation)
 	this.isResult = false;		// true if current input number is a result (set by the calculation from finalArea)
 	this.isFinalResult = false; // true if the user just press "=" button
+	this.isRadians = false;
 }
 
 /**

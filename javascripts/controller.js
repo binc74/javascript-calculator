@@ -23,6 +23,7 @@ CalculatorController.prototype.initialize = function () {
 	registerGlobalFuncButtons(this.model, this.view);
     registerMemoryButtons(this.model, this.view);
     registerHistoryClearButton(this.model, this.view);
+    registerUnitsButton(this.model, this.view);
 };
 /**
  * Register the history clear button with a function.
@@ -37,6 +38,22 @@ function registerHistoryClearButton(model, view) {
         view.update();
     };
     document.getElementById("hClear").addEventListener("click", historyClear, false);
+};
+
+/**
+ * Register the units buttons with a function.
+ *
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ * @author Josh Wright
+ */
+function registerUnitsButton(model, view) {
+
+    var setUnits = function () {
+        model.setUnits();
+        view.update();
+    };
+    document.getElementById("units").addEventListener("click", setUnits, false);
 };
 /**
  * Register the memory buttons with a function.
