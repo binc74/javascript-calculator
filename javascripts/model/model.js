@@ -238,6 +238,7 @@ CalculatorModel.prototype.submit = function () {
 	if (!this.inputArea.isResult || this.inputArea.isFinalResult)
 		this.inputArea.submit();
 	
+	this.finalArea.fillingParen();
     expression = this.finalArea.data.join(" ");
     answer = this.finalArea.submit();
 	this.inputArea.setResult(answer, true);

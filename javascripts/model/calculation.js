@@ -156,7 +156,7 @@ function parseParam(tokens, isRadian) {
  * @param {array of number or string} tokens		The expression
  * @param {boolean} isRadian						true if radian mode is set on
  * @return {number} the result
- * @author Bin Chen
+ * @author Bin Chen, Houyi Fan, Jeb Alawi
  */
 function parseFunction(tokens, isRadian) {
 	var func = tokens.shift();

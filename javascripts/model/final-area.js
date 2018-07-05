@@ -216,6 +216,17 @@ FinalArea.prototype.getCalcString = function () {
 	return this.getEvaluationList().join(" ") + " = " + this.evaluate();
 };
 
+
+/**
+ * Filling parenthesis for unclosed parens.
+ *
+ * @author Bin Chen
+ */
+FinalArea.prototype.fillingParen = function () {
+	for (var i = 0; i < this.parenthesisPos.length; ++i)
+		this.data.push(")");
+};
+
 /**
  * Submit the final expression and clear the expression.
  *
