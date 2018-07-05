@@ -22,13 +22,36 @@ div#calculator {
 
 }
 /******* INPUT AND OUTPUT WITHIN THE CALCULATOR COLUMN CSS STYLING ********/
+div .results{
+    margin:1px;
+    height:25%;
+    max-height: 25%;
+}
 p#result {
+    max-height:15px;
+    max-width:475px;
     margin-bottom: 0%;
     border-bottom: none;
+    overflow: auto;
+    white-space: nowrap;
+    border: unset;
 }
 
 p#input {
+    max-height:15px;
+    max-width:475px;
     margin-top: 0%;
+    overflow: auto;
+    white-space: nowrap;
+    border: unset;
+}
+p#lastCalc {
+    max-height:15px;
+    max-width:475px;
+    overflow: auto;
+    white-space: nowrap;
+    border: unset;
+
 }
 
 div#calculator p {
@@ -72,7 +95,8 @@ div.mainContent{
 td.main{
     margin: 1%;
     padding:1%;
-    width: 40%;
+    width:650px;
+    max-width: 450px;
     height:100%;
 }
 /******* BUTTON TABLE CSS STYLING ********/
@@ -198,7 +222,7 @@ li button:hover{
 .historyColumn{
     margin: 1%;
     padding:1%;
-    width:30%;
+    width:450px;
     height:100%;
 }
 p#history{
@@ -256,7 +280,7 @@ p#input {
 .memoryColumn{
     margin: 1%;
     padding:1%;
-    width:30%;
+    width:450px;
     height:100%;
 }
 p#memory{

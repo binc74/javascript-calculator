@@ -33,7 +33,7 @@ CalculatorModel.prototype.memorySubtract = function (value) {
 	this.memory.memorySubtract(value);
 };
 /*
- * Perform a memory clear.
+ * Perform a memory clear on the top entry in the stack.
  *
  * @author Josh Wright
  */
