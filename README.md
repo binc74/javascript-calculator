@@ -16,3 +16,6 @@ With the memory feature, you may save a "Stack" of values in memory. Addition an
 the value at the top of the memory stack. MC clears one entry at the top of the stack, and MCA clears all of the entries
 in the memory stack.The mode button was added so we could offer multiple modes, but we were only able to implement the 
 mode for a scientific calculator.
+
+Jeb Alawi: Implemented History, CSS styling, show/hide feature for displaying and hiding the history and memory sidebar. 
+Implemented back button and some functions

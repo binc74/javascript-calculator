@@ -241,41 +241,40 @@ function showHideMemHist(model, view, boxId, buttonId) {
         // show the history or memory
         if (document.getElementById(boxId).style.display == "none") {
             document.getElementById(boxId).style.display = "table-cell";
-            document.getElementById("lastCalc").style.marginTop = "3%";
-            document.getElementById("result").style.margin = "3%";
-            document.getElementById("input").style.margin = "3%";
-
-            document.getElementById("buttonTableDiv").style.marginTop = "3%";
-
-            document.getElementById("calculatorContent").style.width = "100%";
-
 
             //hide the history or memory
         }else{
             document.getElementById(boxId).style.display = "none";
-
-            document.getElementById("result").style.margin = "0%";
-            document.getElementById("result").style.marginLeft = "3%";
-
-            document.getElementById("input").style.margin = "0%";
-            document.getElementById("input").style.marginLeft = "03%";
-
-            document.getElementById("lastCalc").style.margin = "0%";
-            document.getElementById("lastCalc").style.marginTop = "3%";
-            document.getElementById("lastCalc").style.marginLeft = "3%";
-
-            document.getElementById("buttonTableDiv").style.marginTop = "0%";
-
-            document.getElementById("calculatorContent").style.width = "94%";
         }
 
-        //adjust height of buttons when both boxes are hidden
+
+
         if(document.getElementById("historyBox").style.display == "none" && document.getElementById("memBox").style.display == "none"){
+            document.getElementById("result").style.margin = "1%";
+            document.getElementById("result").style.marginLeft = "3%";
+
+            document.getElementById("input").style.margin = "1%";
+            document.getElementById("input").style.marginLeft = "3%";
+
+            document.getElementById("lastCalc").style.margin = "1%";
             document.getElementById("lastCalc").style.marginTop = "1%";
-            document.getElementById("input").style.marginBottom = "1%";
+            document.getElementById("lastCalc").style.marginLeft = "3%";
+
             document.getElementById("buttonTableDiv").style.height = "46%";
+            document.getElementById("buttonTableDiv").style.marginTop = "5%";
+            document.getElementById("calculator").style.paddingBottom = "200px";
+
+
+        } else if(document.getElementById("historyBox").style.display == "none" || document.getElementById("memBox").style.display == "none"){
+            document.getElementById("result").style.margin = "3%";
+            document.getElementById("input").style.margin = "3%";
+            document.getElementById("lastCalc").style.margin = "3%";
+            document.getElementById("buttonTableDiv").style.marginTop = "7%";
+            document.getElementById("buttonTableDiv").style.height = "52%";
+            document.getElementById("calculator").style.paddingBottom = "150px";
         }else{
-            document.getElementById("buttonTableDiv").style.height = "53%";
+            document.getElementById("calculator").style.paddingBottom = "50px";
+
         }
     };
 
