@@ -25,6 +25,7 @@ History.prototype.html = function () {
  	     html += "<div class='item' value=" + i + "><span id=" + i + ">" + this.entries[i].exp + " = " + this.entries[i].res + "</span></div>";
  	     html += "</br>";
     }
+    return html;
 }
 /**
  * Clears the history
