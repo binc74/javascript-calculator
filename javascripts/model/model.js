@@ -114,7 +114,7 @@ CalculatorModel.prototype.getUnits = function () {
  *
  * @author Bin Chen
  */
-CalculatorModel.prototype.initialize = function () {
+CalculatorModel.prototype.initialize = function (controller) {
 	this.inputArea.setFinalArea(this.finalArea);
 	this.finalArea.setInputArea(this.inputArea);
 };
@@ -240,9 +240,9 @@ CalculatorModel.prototype.submit = function () {
 	
     expression = this.finalArea.data.join(" ");
     answer = this.finalArea.submit();
-    entry = expression + " = " + answer;
-    this.history.entries.push(entry);
 	this.inputArea.setResult(answer, true);
+	
+	this.history.add(expression, answer);
 };
 
 CalculatorModel.prototype.clear = function () {

@@ -20,7 +20,7 @@ function InputArea() {
  */
 InputArea.prototype.setFinalArea = function (finalArea) {
 	this.finalArea = finalArea;
-}
+};
 /**
  * Set the data for the inputArea.
  *
@@ -29,7 +29,7 @@ InputArea.prototype.setFinalArea = function (finalArea) {
  */
 InputArea.prototype.setData = function (data) {
     this.data = data;
-}
+};
 
 /**
  * Push the num character into the end of data string.
@@ -65,7 +65,7 @@ InputArea.prototype.push = function (num) {
 	
 	// since the user change the number, it now isn't a result
 	this.isResult = false;
-}
+};
 
 /**
  * Return the string representation of the data.
@@ -97,7 +97,7 @@ InputArea.prototype.toString = function() {
 		res = "-" + res;
 	
 	return res;
-}
+};
 
 /**
  * Submit current data to the finalArea.
@@ -111,7 +111,7 @@ InputArea.prototype.submit = function () {
 		var res = parseFloat(this.data);
 		this.finalArea.push(this.isNegative ? -res : res);	
 	}
-}
+};
 
 /**
  * Set the result to current data.
@@ -132,7 +132,7 @@ InputArea.prototype.setResult = function (result, isFinalResult) {
 	
 	this.isResult = true;
 	this.isFinalResult = isFinalResult;
-}
+};
 
 /**
  * push a function to the finalArea with current data as parameter.
@@ -144,7 +144,7 @@ InputArea.prototype.addFunction = function (func) {
 	this.finalArea.addLeftParen(func);
 	this.submit();
 	this.finalArea.addRightParen();
-}
+};
 
 InputArea.prototype.clearInputArea = function () {
 	this.data = "";	
@@ -152,7 +152,7 @@ InputArea.prototype.clearInputArea = function () {
 	this.isNegative = false;
 	this.isResult = false;
 	this.isFinalResult = false;
-}
+};
 
 InputArea.prototype.setPi = function () {
 	this.data = Math.PI.toString();
@@ -160,7 +160,7 @@ InputArea.prototype.setPi = function () {
 	this.isNegative = false;
 	this.isResult = true;
 	this.isFinalResult = true;
-}
+};
 
 /**
  * Remove a digit.
@@ -171,7 +171,7 @@ InputArea.prototype.remove = function () {
 		this.isNegative = false;
 	else
 		this.data = this.data.slice(0,this.data.length-1);
-}
+};
 /**
  * Return the string representation of the data.
  */

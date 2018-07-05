@@ -20,14 +20,6 @@
 				<div id="calculatorContent" class="mainContent">
 					<div class="modeBar">
 						<ul>
-							<li class = "dropdown">
-								<button class="mode" >Mode</button>
-								<div class = "dropdown-content">
-									<button id="scientific" class="mode" >Scientific</button>
-									<button id="standard" class="mode" >Standard</button>
-									<button id="programmer"class="mode" >Programmer</button>
-								</div>
-							</li>
 							<li class="dropdown">
 								<button class="mode">History</button>
 								<div id="clearHistory" class="dropdown-content">
@@ -136,6 +128,7 @@
     var model = new CalculatorModel();
     var view = new CalculatorView(model);
     var controller = new CalculatorController(model, view);
+	
     view.initialize("input", "result", "lastCalc","history","memory");
     model.initialize();
     controller.initialize();

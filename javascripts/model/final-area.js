@@ -20,7 +20,7 @@ function FinalArea() {
  */
 FinalArea.prototype.setInputArea = function (inputArea) {
 	this.inputArea = inputArea;
-}
+};
 
 /**
  * returns true if there is data need to be clear.
@@ -31,7 +31,7 @@ FinalArea.prototype.setInputArea = function (inputArea) {
 FinalArea.prototype.endWithRightParen = function () {
 	return this.data.length > 0 && this.pendingOperator == null &&
 		this.data[this.data.length - 1] == ')';
-}
+};
 
 /**
  * Push the element into the data list.
@@ -46,7 +46,7 @@ FinalArea.prototype.push = function (ele) {
 	}
 	
 	this.data.push(ele);
-}
+};
 
 /**
  * The the operator that may be changed or used in the future.
@@ -61,7 +61,7 @@ FinalArea.prototype.setPendingOperator = function (op) {
 		this.lastLeftParen = 0;
 	
 	this.pendingOperator = op;
-}
+};
 
 /**
  * Add the function to its appropriate position.
@@ -78,7 +78,7 @@ FinalArea.prototype.addFunction = function (func) {
 		this.addLeftParen(func, parenPosition);	
 		this.addRightParen();
 	}
-}
+};
 
 /**
  * Count the number of right parenthesis at the end of data array.
@@ -97,7 +97,7 @@ FinalArea.prototype.countEndRightParen = function () {
 	}
 	
 	return count;
-}
+};
 
 /**
  * Add a left parenthesis with or without function name at the intend position.
@@ -134,7 +134,7 @@ FinalArea.prototype.addLeftParen = function (funcName, position) {
 	
 	this.parenthesisPos.push(currParenPosition);
 	this.lastLeftParen = currParenPosition;
-}
+};
 
 /**
  * Append the left parenthesis to the end of data, then evaluate the value inside the parenthesis.
@@ -146,7 +146,7 @@ FinalArea.prototype.addRightParen = function () {
 	this.lastLeftParen = this.parenthesisPos.pop();
 	
 	return this.evaluate();
-}
+};
 
 /**
  * get the list for the evaluation.
@@ -163,7 +163,7 @@ FinalArea.prototype.getEvaluationList = function () {
 	}
 	
 	return this.data.slice();
-}
+};
 
 /**
  * Evaluate the value of data(expression).
@@ -178,7 +178,7 @@ FinalArea.prototype.evaluate = function () {
 	console.log("Current expr: " + this.getEvaluationList().join(" "));
 	
 	return Calculation.getResult(this.getEvaluationList(), this.isRadian);
-}
+};
 
 /**
  * Clear the parenthesis that match the end parenthesis, and the inside content.
@@ -187,7 +187,7 @@ FinalArea.prototype.evaluate = function () {
  */
 FinalArea.prototype.clear = function () {
 	this.data = this.data.slice(0, this.lastLeftParen);
-}
+};
 
 /**
  * Return the string representation of the data.
@@ -199,7 +199,7 @@ FinalArea.prototype.toString = function () {
 	return this.data.reduce(function (a, b) {
 		return a + b.toString() + " ";
 	}, "") + (this.pendingOperator == null ? "" : this.pendingOperator + " ");
-}
+};
 
 /**
  * Return the expression and result of current calculation.
@@ -214,7 +214,7 @@ FinalArea.prototype.getCalcString = function () {
 		return "No Calculation yet.";
 	
 	return this.getEvaluationList().join(" ") + " = " + this.evaluate();
-}
+};
 
 /**
  * Submit the final expression and clear the expression.
@@ -235,11 +235,11 @@ FinalArea.prototype.submit = function () {
 	this.pendingOperator = null;	
 	
 	return res;
-}
+};
 
 FinalArea.prototype.clearFinalArea = function () {
 	this.data = [];
 	this.pendingOperator = null;
 	this.parenthesisPos = [];
 	this.lastLeftParen = 0;
-}
+};

@@ -28,6 +28,7 @@ CalculatorController.prototype.initialize = function () {
     showHideMemHist(this.model, this.view, "memBox", "showMem");
 
 };
+
 /**
  * Register the history clear button with a function.
  *
@@ -41,7 +42,7 @@ function registerHistoryClearButton(model, view) {
         view.update();
     };
     document.getElementById("hClear").addEventListener("click", historyClear, false);
-};
+}
 
 /**
  * Register the units buttons with a function.
@@ -57,7 +58,8 @@ function registerUnitsButton(model, view) {
         view.update();
     };
     document.getElementById("units").addEventListener("click", setUnits, false);
-};
+}
+
 /**
  * Register the memory buttons with a function.
  *
@@ -98,6 +100,7 @@ function registerMemoryButtons(model, view) {
     document.getElementById("MC").addEventListener("click", memoryClear, false);
     document.getElementById("MCA").addEventListener("click", memoryClearAll, false);
 }
+
 /**
  * Register the number buttons with functions.
  *

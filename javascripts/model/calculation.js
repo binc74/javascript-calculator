@@ -19,9 +19,18 @@ Calculation.MULT_OP_SET = new Set("*/%^");
  * sub-factor -> param | function 
  * param -> ( expr )
  * function -> func param )
- * func -> neg | root | log (
+ * func -> neg( | root( | log( | 10^( | sin( | cos( | 
  * add-op -> + | -
  * mult-op -> * | / | % | ^
+ */
+ 
+/**
+ * Get the value of the whole expression.
+ *
+ * @param {array of number or string} tokens		The expression
+ * @param {boolean} isRadian						true if radian mode is set on
+ * @return {number} the result
+ * @author Bin Chen
  */
 Calculation.getResult = function (tokens, isRadian) {
 	if (tokens.length == 0)
@@ -30,7 +39,14 @@ Calculation.getResult = function (tokens, isRadian) {
 	return parseExpr(tokens, isRadian);
 }
 
- 
+/**
+ * Get the value of the expression.
+ *
+ * @param {array of number or string} tokens		The expression
+ * @param {boolean} isRadian						true if radian mode is set on
+ * @return {number} the result
+ * @author Bin Chen
+ */
 function parseExpr(tokens, isRadian) {
 	var value = parseTerm(tokens, isRadian);
 
@@ -49,6 +65,14 @@ function parseExpr(tokens, isRadian) {
 	return value;
 }
 
+/**
+ * Get the value of the trem.
+ *
+ * @param {array of number or string} tokens		The expression
+ * @param {boolean} isRadian						true if radian mode is set on
+ * @return {number} the result
+ * @author Bin Chen
+ */
 function parseTerm(tokens, isRadian) {
 	var value = parseFactor(tokens, isRadian);
 	
@@ -76,6 +100,14 @@ function parseTerm(tokens, isRadian) {
 	return value;
 }
 
+/**
+ * Get the value of the factor.
+ *
+ * @param {array of number or string} tokens		The expression
+ * @param {boolean} isRadian						true if radian mode is set on
+ * @return {number} the result
+ * @author Bin Chen
+ */
 function parseFactor(tokens, isRadian) {	
 	if (typeof tokens[0] == "number") 
 		return tokens.shift();
@@ -83,6 +115,14 @@ function parseFactor(tokens, isRadian) {
 	return parseSubFactor(tokens, isRadian);
 }
 
+/**
+ * Get the value of the subfactor.
+ *
+ * @param {array of number or string} tokens		The expression
+ * @param {boolean} isRadian						true if radian mode is set on
+ * @return {number} the result
+ * @author Bin Chen
+ */
 function parseSubFactor(tokens, isRadian) {
 	if (tokens[0] == '(') 	
 		return parseParam(tokens, isRadian);
@@ -90,6 +130,14 @@ function parseSubFactor(tokens, isRadian) {
 	return parseFunction(tokens, isRadian);
 }
 
+/**
+ * Get the value inside the parameter.
+ *
+ * @param {array of number or string} tokens		The expression
+ * @param {boolean} isRadian						true if radian mode is set on
+ * @return {number} the result
+ * @author Bin Chen
+ */
 function parseParam(tokens, isRadian) {
 	if (tokens.shift() != '(') 
 		console.error("Error: can't find '('");
@@ -102,6 +150,14 @@ function parseParam(tokens, isRadian) {
 	return value;
 }
 
+/**
+ * Get the value of the function.
+ *
+ * @param {array of number or string} tokens		The expression
+ * @param {boolean} isRadian						true if radian mode is set on
+ * @return {number} the result
+ * @author Bin Chen
+ */
 function parseFunction(tokens, isRadian) {
 	var func = tokens.shift();
 	var param = parseExpr(tokens, isRadian);
@@ -155,6 +211,13 @@ function parseFunction(tokens, isRadian) {
 	return 0;
 }
 
+/**
+ * Get the factorial value of the number.
+ *
+ * @param {number} number		The number
+ * @return {number} the result
+ * @author Houyi Fan
+ */
 function factorial(number){
 	var ans = 1;
 	
