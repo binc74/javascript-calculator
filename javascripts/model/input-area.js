@@ -161,4 +161,9 @@ InputArea.prototype.remove = function () {
 	else
 		this.data = this.data.slice(0,this.data.length-1);
 }
-
+/**
+ * Return the string representation of the data.
+ */
+InputArea.prototype.returnData = function () {
+	return this.data;
+};

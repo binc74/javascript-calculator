@@ -6,13 +6,78 @@ function CalculatorModel() {
 	this.inputArea = new InputArea();
 	this.finalArea = new FinalArea();
 	this.history = new History();
+	this.memory = new Memory();
 }
+/*
+ * Clear the history.
+ *
+ * @author Josh Wright
+ */
+CalculatorModel.prototype.historyClear = function () {
+    this.history.historyClear();
+};
+/*
+ * Perform a memory add.
+ *
+ * @author Josh Wright
+ */
+CalculatorModel.prototype.memoryAdd = function (value) {
+    this.memory.memoryAdd(value);
+};
+/*
+ * Perform a memory subtract.
+ *
+ * @author Josh Wright
+ */
+CalculatorModel.prototype.memorySubtract = function (value) {
+	this.memory.memorySubtract(value);
+};
+/*
+ * Perform a memory clear.
+ *
+ * @author Josh Wright
+ */
 
+CalculatorModel.prototype.memoryClear = function () {
+    this.memory.memoryClear();
+};
+/*
+ * Perform a memory remove.
+ *
+ * @author Josh Wright
+ */
+CalculatorModel.prototype.memoryRemove = function (entry) {
+    this.memory.memoryRemove(entry);
+};
+/*
+ * Perform a memory store.
+ *
+ * @author Josh Wright
+ */
+CalculatorModel.prototype.memoryStore = function (entry) {
+    this.memory.memoryStore(entry);
+    //this.memory.memoryStore();
+};
+/*
+ * Get HTML for the Memory.
+ *
+ * @author Josh Wright
+ */
+CalculatorModel.prototype.getMemoryHTML = function () {
+    return this.memory.memory.join("<br />");
+
+};
+/*
+ * Get HTML for the history.
+ *
+ * @author Jeb Alawi
+ */
 CalculatorModel.prototype.getHistoryHTML = function () {
     return this.history.entries.join("<br />")
-}
+};
 
-/**
+
+/*
  * Initialize the Model for the calculator.
  *
  * @author Bin Chen
@@ -20,8 +85,7 @@ CalculatorModel.prototype.getHistoryHTML = function () {
 CalculatorModel.prototype.initialize = function () {
 	this.inputArea.setFinalArea(this.finalArea);
 	this.finalArea.setInputArea(this.inputArea);
-}
-
+};
 /**
  * Add a digit.
  *
@@ -30,7 +94,7 @@ CalculatorModel.prototype.initialize = function () {
  */
 CalculatorModel.prototype.addDigit = function (digit) {
 	this.inputArea.push(digit);
-}
+};
 
 /**
  * Remove a digit.
@@ -38,7 +102,7 @@ CalculatorModel.prototype.addDigit = function (digit) {
  */
 CalculatorModel.prototype.removeDigit = function () {
 	this.inputArea.remove();
-}
+};
 
 /**
  * Add an operator.
@@ -53,7 +117,7 @@ CalculatorModel.prototype.addOperator = function (op) {
 	this.finalArea.setPendingOperator(op);
 	
 	this.inputArea.setResult(this.finalArea.evaluate(), false);
-}
+};
 
 /**
  * Add a function.
@@ -68,7 +132,7 @@ CalculatorModel.prototype.addFunction = function (func) {
 		this.inputArea.addFunction(func);
 	
 	this.inputArea.setResult(this.finalArea.evaluate(), false);
-}
+};
 
 /**
  * Add a left parenthesis, and then set the input to 0.
@@ -76,10 +140,10 @@ CalculatorModel.prototype.addFunction = function (func) {
  * @author Bin Chen
  */
 CalculatorModel.prototype.addLeftParen = function () {
-	this.finalArea.addLeftParen()
+	this.finalArea.addLeftParen();
 	
 	this.inputArea.setResult("", false);
-}
+};
 
 /**
  * Add a right parenthesis, and then evaluate the value inside the parenthesis.
@@ -91,7 +155,7 @@ CalculatorModel.prototype.addRightParen = function () {
 		this.inputArea.submit();
 	
 	this.inputArea.setResult(this.finalArea.addRightParen(), false);
-}
+};
 
 /**
  * Evaluate the result of the expression and set it to the input area.
@@ -100,7 +164,7 @@ CalculatorModel.prototype.addRightParen = function () {
  */
 CalculatorModel.prototype.evaluate = function () {	
 	this.inputArea.setResult(this.finalArea.evaluate(), false);
-}
+};
 
 /**
  * Get the string that represents the number stored in input area.
@@ -110,7 +174,7 @@ CalculatorModel.prototype.evaluate = function () {
  */
 CalculatorModel.prototype.getInputString = function () {
 	return this.inputArea.toString();
-}
+};
 
 /**
  * Get the string that represents the expression stored in the final area and staging area.
@@ -120,7 +184,7 @@ CalculatorModel.prototype.getInputString = function () {
  */
 CalculatorModel.prototype.getFinalString = function () {
 	return this.finalArea.toString();
-}
+};
 
 /**
  * Get the string that represents the expression stored in the final area and staging area.
@@ -130,7 +194,7 @@ CalculatorModel.prototype.getFinalString = function () {
  */
 CalculatorModel.prototype.getLastCalcString = function () {
 	return this.finalArea.getCalcString();
-}
+};
 
 /**
  * Submit the final equation.
@@ -147,17 +211,17 @@ CalculatorModel.prototype.submit = function () {
     entry = expression + " = " + answer;
     this.history.entries.push(entry);
 	this.inputArea.setResult(answer, true);
-}
+};
 
 CalculatorModel.prototype.clear = function () {
 	this.inputArea.clearInputArea();
 	this.finalArea.clearFinalArea();
-}
+};
 
 CalculatorModel.prototype.clearInputArea = function () {
 	this.inputArea.clearInputArea();
-}
+};
 
 CalculatorModel.prototype.setPi = function () {
 	this.inputArea.setPi();
-}
+};

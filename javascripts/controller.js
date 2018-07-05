@@ -21,8 +21,58 @@ CalculatorController.prototype.initialize = function () {
 	registerParenthesis(this.model, this.view);
 	registerFuncButtons(this.model, this.view);
 	registerGlobalFuncButtons(this.model, this.view);
+    registerMemoryButtons(this.model, this.view);
+    registerHistoryClearButton(this.model, this.view);
+};
+/**
+ * Register the history clear button with a function.
+ *
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ * @author Josh Wright
+ */
+function registerHistoryClearButton(model, view) {
+    var historyClear = function () {
+        model.historyClear();
+        view.update();
+    };
+    document.getElementById("hClear").addEventListener("click", historyClear, false);
+};
+/**
+ * Register the memory buttons with a function.
+ *
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ * @author Josh Wright
+ */
+function registerMemoryButtons(model, view) {
+    var memoryAdd = function () {
+        model.memoryAdd(parseInt(model.inputArea.returnData()));
+        view.update();
+    };
+    var memorySubtract = function () {
+        model.memorySubtract(parseInt(model.inputArea.returnData()));
+        view.update();
+    };
+    var memoryStore = function () {
+        model.memoryStore(parseInt(model.inputArea.returnData()));
+        view.update();
+    };
+    var memoryRemove = function () {
+        model.memoryRemove();
+        view.update();
+    };
+    var memoryClear = function () {
+        model.memoryClear();
+        view.update();
+    };
+    // get all the button tags with class "number"
+    document.getElementById("M+").addEventListener("click", memoryAdd, false);
+    document.getElementById("M-").addEventListener("click", memorySubtract, false);
+    document.getElementById("MS").addEventListener("click", memoryStore, false);
+    document.getElementById("MR").addEventListener("click", memoryRemove, false);
+    document.getElementById("MC").addEventListener("click", memoryClear, false);
 }
-
 /**
  * Register the number buttons with functions.
  *

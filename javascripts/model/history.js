@@ -2,3 +2,12 @@
 function History(){
     this.entries = [];
 }
+/**
+ * Clears the history
+ *
+ * @author Josh Wright
+ *
+ * */
+History.prototype.historyClear = function (){
+    this.entries = [];
+}

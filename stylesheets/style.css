@@ -14,7 +14,7 @@ div#calculator {
     padding:1%;
     /*width: 525px;
     height: 550px;*/
-    width: 75%;
+    width: 90%;
     height: 635px;
     background-color: slategray;
     border-radius: 6px;
@@ -72,7 +72,7 @@ div.mainContent{
 td.main{
     margin: 1%;
     padding:1%;
-    width: 53%;
+    width: 40%;
     height:100%;
 }
 /******* BUTTON TABLE CSS STYLING ********/
@@ -122,6 +122,10 @@ button.mode{
 }
 
 button:hover {
+    background-color: darkseagreen;
+    border-color: black;
+}
+#equals:hover {
     background-color: darkseagreen;
     border-color: black;
 }
@@ -185,8 +189,6 @@ li button:hover{
 .history{
     margin: 5px;
     padding:5px;
-    padding-left: 2%;
-    padding-right:2%;
     height:100%;
     width:100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
@@ -196,14 +198,17 @@ li button:hover{
 .historyColumn{
     margin: 1%;
     padding:1%;
-    width:43%;
+    width:30%;
     height:100%;
 }
 p#history{
     border: unset;
     height:95%;
     margin:5px;
+    overflow: auto;
+    white-space: nowrap;
 }
+
 div.history {
     overflow: auto;
     white-space: nowrap;
@@ -237,6 +242,42 @@ p#input {
 }
 .corner{
 	vertical-align:super;
+}
+/**------------------------MEMORY CSS----------------------------**/
+.memory{
+    margin: 5px;
+    padding:5px;
+    height:100%;
+    width:100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+.memoryColumn{
+    margin: 1%;
+    padding:1%;
+    width:30%;
+    height:100%;
+}
+p#memory{
+    border: unset;
+    height:95%;
+    margin:5px;
+    overflow: auto;
+    white-space: nowrap;
+}
+div.memory {
+    overflow: auto;
+    white-space: nowrap;
+    border: 1px solid #000000;
+    margin: 3%;
+    padding:1%;
+    padding-left: 2%;
+    padding-right:2%;
+    min-height: 30px;
+    width: 90%;
+    background-color: lightsteelblue;
+    border-radius: 5px;
 }
 /*td:nth-child(2) button {
     width: 15px
