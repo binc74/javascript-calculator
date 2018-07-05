@@ -24,6 +24,11 @@ CalculatorController.prototype.initialize = function () {
     registerMemoryButtons(this.model, this.view);
     registerHistoryClearButton(this.model, this.view);
     registerUnitsButton(this.model, this.view);
+    showHideMemHist(this.model, this.view, "historyBox", "showHistory");
+    showHideMemHist(this.model, this.view, "memBox", "showMem");
+
+
+
 };
 /**
  * Register the history clear button with a function.
@@ -214,5 +219,61 @@ function registerGlobalFuncButtons(model, view) {
 	document.getElementById("CE").addEventListener("click", clearInputArea, false);
     document.getElementById("pi").addEventListener("click", pi, false);
     document.getElementById("back").addEventListener("click", back, false);
+
+}
+
+
+/**
+ * shows or hides the memory section
+ * @param {CalculatorModel} model	The calculator model
+ * @param {CalculatorView} view		The calculator view
+ *
+ * @author Jeb Alawi
+ */
+function showHideMemHist(model, view, boxId, buttonId) {
+    var showHideHistory = function () {
+        // show the history or memory
+        if (document.getElementById(boxId).style.display == "none") {
+            document.getElementById(boxId).style.display = "table-cell";
+            document.getElementById("lastCalc").style.marginTop = "3%";
+            document.getElementById("result").style.margin = "3%";
+            document.getElementById("input").style.margin = "3%";
+
+            document.getElementById("buttonTableDiv").style.marginTop = "3%";
+
+            document.getElementById("calculatorContent").style.width = "100%";
+
+
+            //hide the history or memory
+        }else{
+            document.getElementById(boxId).style.display = "none";
+
+            document.getElementById("result").style.margin = "0%";
+            document.getElementById("result").style.marginLeft = "3%";
+
+            document.getElementById("input").style.margin = "0%";
+            document.getElementById("input").style.marginLeft = "03%";
+
+            document.getElementById("lastCalc").style.margin = "0%";
+            document.getElementById("lastCalc").style.marginTop = "3%";
+            document.getElementById("lastCalc").style.marginLeft = "3%";
+
+            document.getElementById("buttonTableDiv").style.marginTop = "0%";
+
+            document.getElementById("calculatorContent").style.width = "94%";
+        }
+
+        //adjust height of buttons when both boxes are hidden
+        if(document.getElementById("historyBox").style.display == "none" && document.getElementById("memBox").style.display == "none"){
+            document.getElementById("lastCalc").style.marginTop = "1%";
+            document.getElementById("input").style.marginBottom = "1%";
+            document.getElementById("buttonTableDiv").style.height = "46%";
+        }else{
+            document.getElementById("buttonTableDiv").style.height = "53%";
+        }
+    };
+
+
+    document.getElementById(buttonId).addEventListener("click", showHideHistory, false);
 
 }
