@@ -9,6 +9,7 @@ function FinalArea() {
 	this.lastLeftParen = 0;
 	this.parenthesisPos = [];
 	this.inputArea = null;	
+	this.isRadian = false;
 }
 
 /**
@@ -167,17 +168,16 @@ FinalArea.prototype.getEvaluationList = function () {
 /**
  * Evaluate the value of data(expression).
  *
- * @param {boolean} isRadian		true if the mode is radian
  * @return {number} the evaluated value
  * @author Bin Chen
  */
-FinalArea.prototype.evaluate = function (isRadian) {
+FinalArea.prototype.evaluate = function () {
 	console.log("////////");
 	console.log("current paren pos: [" + this.parenthesisPos.join(" ") + "]");
 	console.log("Last paren: " + this.lastLeftParen);
 	console.log("Current expr: " + this.getEvaluationList().join(" "));
 	
-	return Calculation.getResult(this.getEvaluationList(), isRadian);
+	return Calculation.getResult(this.getEvaluationList(), this.isRadian);
 }
 
 /**
@@ -219,17 +219,16 @@ FinalArea.prototype.getCalcString = function () {
 /**
  * Submit the final expression and clear the expression.
  *
- * @param {boolean} isRadian		true if the mode is radian
  * @return {number} the result
  * @author Bin Chen
  */
-FinalArea.prototype.submit = function (isRadian) {
+FinalArea.prototype.submit = function () {
 	// auto filling the missing parenthesis
 	for (var i = 0; i < this.parenthesisPos.length; ++i)
 		this.data.push(")");
 	
 	// get the result
-	var res = Calculation.getResult(this.data, isRadian);
+	var res = Calculation.getResult(this.data, this.isRadian);
 	
 	// clear the data
 	this.data = [];
