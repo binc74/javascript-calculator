@@ -27,8 +27,6 @@ CalculatorController.prototype.initialize = function () {
     showHideMemHist(this.model, this.view, "historyBox", "showHistory");
     showHideMemHist(this.model, this.view, "memBox", "showMem");
 
-
-
 };
 /**
  * Register the history clear button with a function.
