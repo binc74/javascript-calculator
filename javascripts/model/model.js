@@ -7,6 +7,7 @@ function CalculatorModel() {
 	this.finalArea = new FinalArea();
 	this.history = new History();
 	this.memory = new Memory();
+	this.isRadian = false;
 }
 /*
  * Clear the history.
@@ -186,7 +187,7 @@ CalculatorModel.prototype.addRightParen = function () {
  * @author Bin Chen
  */
 CalculatorModel.prototype.evaluate = function () {	
-	this.inputArea.setResult(this.finalArea.evaluate(), false);
+	this.inputArea.setResult(this.finalArea.evaluate(isRadian), false);
 };
 
 /**
@@ -230,7 +231,7 @@ CalculatorModel.prototype.submit = function () {
 		this.inputArea.submit();
 	
     expression = this.finalArea.data.join(" ");
-    answer = this.finalArea.submit();
+    answer = this.finalArea.submit(isRadian);
     entry = expression + " = " + answer;
     this.history.entries.push(entry);
 	this.inputArea.setResult(answer, true);
