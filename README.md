@@ -2,6 +2,47 @@
 ### JavaScript Calculator
 We choose to implement a scientific calculator that is pretty similar to the one in microsoft in this project.
 
+### Core Functionalities
+* The History Feature
+	* every time when the user press "=", the whole expression and result will be stored in the history section
+	* user can choose to show/hide the history section
+	* user can choose to clear the history 
+
+* The Memory Feature
+	* With the memory feature, you may save a "Stack" of values in memory
+	* Addition and subtraction operations can be done on the value at the top of the memory stack
+	* MC clears one entry at the top of the stack, and MCA clears all of the entries in the memory stack
+
+* The Degree/Radian Mode
+	* By Clicking on the Degree/Radian button on the top of the cacluator, it will switch between the Degree mode or the Radian mode
+	* Since we just have sin and cos, the Degree/Radian mode will only affect the result of these two functions
+
+* Global Functions
+	* CE clears the input area
+	* C cears the input area and the final experssion area
+	* back can clear one digit in the input area
+	* pi sets the input area to the value of pi
+
+* Normal Functions
+	* x^2 squares the value inside the parenthesis e.g. sqr(4) = 16
+	* 1/x gets the inverse of the value e.g. 1/(4) = 0.25
+	* e^x gets e^(value)
+	* ln gets ln(value)
+	* root gets squareroot(value)
+	* 10^x gets 10^(value)
+	* sin gets sin(value)
+	* cos gets cos(value)
+	* log gets log10(value)
+	* n! gets factorial(value)
+	* negate gets -value
+	* user can stack the function e.g. 1/(root(sqr(neg(neg(3 + 4)))))
+
+* parenthesis
+	* the parenthesis should work and calculate properly
+
+* Input checking
+	* user cannot enter more than a decimal dot in the input number
+
 ### Importent Things to Notice
 * Temporary Calculation in this calculator is pretty similar to that in the microsoft scientific calculator, but they have some difference.
 	* Slightly different from the MS calculator, When there is no open parenthesis (just having a "(" but not having a ")")exists, the calculator will temporarily evaluate the whole expression
@@ -36,13 +77,6 @@ We choose to implement a scientific calculator that is pretty similar to the one
 		
 * The above explaination may be confusing, just try it.
 
-### Core Functionalities
-* The Degree/Radian Mode
-	* By Clicking on the Degree/Radian button on the top of the cacluator, it will switch between the Degree mode or the Radian mode
-	* Since we just have sin and cos, the Degree/Radian mode will only affect the result of these two functions
-
-* 
-
 ### Roles
 * Overall Project Manager: Bin Chen
 * Coding Manager: Jeb Alawi
@@ -56,12 +90,11 @@ Also list if people worked together (pair programmed) on a particular section.
 Josh Wright: Provided a large part of the html and css styling. Implemented the mode bar buttons and the memory feature.
 With the memory feature, you may save a "Stack" of values in memory. Addition and subtraction operations can be done on 
 the value at the top of the memory stack. MC clears one entry at the top of the stack, and MCA clears all of the entries
-in the memory stack.The mode button was added so we could offer multiple modes, but we were only able to implement the 
-mode for a scientific calculator.
+in the memory stack.
 
 Jeb Alawi: Implemented History, CSS styling, show/hide feature for displaying and hiding the history and memory sidebar. 
 Implemented back button and some functions
 
-Bin Chen:
+Bin Chen: Implement the calculation part
 
 Houyi Fan: 
