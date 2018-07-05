@@ -23,25 +23,25 @@ Calculation.MULT_OP_SET = new Set("*/%^");
  * add-op -> + | -
  * mult-op -> * | / | % | ^
  */
-Calculation.getResult = function (tokens) {
+Calculation.getResult = function (tokens, isRadian) {
 	if (tokens.length == 0)
 		return 0;
 
-	return parseExpr(tokens);
+	return parseExpr(tokens, isRadian);
 }
 
  
-function parseExpr(tokens) {
-	var value = parseTerm(tokens);
+function parseExpr(tokens, isRadian) {
+	var value = parseTerm(tokens, isRadian);
 
 	while (tokens.length > 0 && Calculation.ADD_OP_SET.has(tokens[0])) {			
 		switch (tokens.shift()) {
 			case '+':
-				value += parseTerm(tokens);
+				value += parseTerm(tokens, isRadian);
 				break;
 
 			case '-':
-				value -= parseTerm(tokens);
+				value -= parseTerm(tokens, isRadian);
 				break;
 		}
 	}	
@@ -49,25 +49,25 @@ function parseExpr(tokens) {
 	return value;
 }
 
-function parseTerm(tokens) {
-	var value = parseFactor(tokens);
+function parseTerm(tokens, isRadian) {
+	var value = parseFactor(tokens, isRadian);
 	
 	while (tokens.length > 0 && Calculation.MULT_OP_SET.has(tokens[0])) {
 		switch (tokens.shift()) {
 			case '*':
-				value *= parseFactor(tokens);
+				value *= parseFactor(tokens, isRadian);
 				break;
 				
 			case '/':
-				value /= parseFactor(tokens);
+				value /= parseFactor(tokens, isRadian);
 				break;
 				
 			case '%':
-				value %= parseFactor(tokens);
+				value %= parseFactor(tokens, isRadian);
 				break;
 				
 			case '^':
-				value = Math.pow(value, parseFactor(tokens));
+				value = Math.pow(value, parseFactor(tokens, isRadian));
 				break;
 
 		}		
@@ -76,25 +76,25 @@ function parseTerm(tokens) {
 	return value;
 }
 
-function parseFactor(tokens) {	
+function parseFactor(tokens, isRadian) {	
 	if (typeof tokens[0] == "number") 
 		return tokens.shift();
 	
-	return parseSubFactor(tokens);
+	return parseSubFactor(tokens, isRadian);
 }
 
-function parseSubFactor(tokens) {
+function parseSubFactor(tokens, isRadian) {
 	if (tokens[0] == '(') 	
-		return parseParam(tokens);
+		return parseParam(tokens, isRadian);
 	
-	return parseFunction(tokens);
+	return parseFunction(tokens, isRadian);
 }
 
-function parseParam(tokens) {
+function parseParam(tokens, isRadian) {
 	if (tokens.shift() != '(') 
 		console.error("Error: can't find '('");
 	
-	var value = parseExpr(tokens);
+	var value = parseExpr(tokens, isRadian);
 	
 	if (tokens.shift() != ')') 
 		console.error("Error: can't find ')'");
@@ -102,9 +102,9 @@ function parseParam(tokens) {
 	return value;
 }
 
-function parseFunction(tokens) {
+function parseFunction(tokens, isRadian) {
 	var func = tokens.shift();
-	var param = parseExpr(tokens);
+	var param = parseExpr(tokens, isRadian);
 	
 	if (tokens.shift() != ')') 
 		console.error("Error: can't find ')'");
@@ -123,10 +123,16 @@ function parseFunction(tokens) {
 			return Math.pow(10, param);
 
 		case "sin(":
-			return Math.sin(param * (Math.PI / 180));
+			if (isRadian)
+				return Math.sin(param * (Math.PI / 180));
+			else
+				return Math.sin(param);
 
 		case "cos(":
-			return Math.cos(param * (Math.PI / 180));
+			if (isRadian)
+				return Math.cos(param * (Math.PI / 180));
+			else
+				return Math.sin(param);
 
 		case "fact(":
 			return factorial(param);
