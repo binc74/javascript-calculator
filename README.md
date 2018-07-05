@@ -40,7 +40,8 @@ We choose to implement a scientific calculator that is pretty similar to the one
 * parenthesis
 	* the parenthesis should work and calculate properly
 
-* Input checking
+* Input display and checking
+	* in the input area, every 3 digits of the number is seperated by comma
 	* user cannot enter more than a decimal dot in the input number
 
 ### Importent Things to Notice

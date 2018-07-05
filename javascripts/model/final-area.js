@@ -211,7 +211,7 @@ FinalArea.prototype.getCalcString = function () {
 	var list = this.getEvaluationList();
 	
 	if (list.length == 0 || this.data.length == 0)
-		return "No Calculation yet.";
+		return "No Temporary Calculation.";
 	
 	return this.getEvaluationList().join(" ") + " = " + this.evaluate();
 };
