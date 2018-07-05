@@ -17,7 +17,7 @@
 	<table class="mainTable">
 		<tr class="mainTable">
 			<td class="main">
-				<div class="mainContent">
+				<div id="calculatorContent" class="mainContent">
 					<div class="modeBar">
 						<ul>
 							<li class = "dropdown">
@@ -32,6 +32,7 @@
 								<button class="mode">History</button>
 								<div id="clearHistory" class="dropdown-content">
 									<button class="mode" id="hClear">Clear</button>
+									<button id="showHistory" class="mode" >Show/Hide</button>
 								</div>
 							</li>
 							<li class="dropdown">
@@ -42,6 +43,8 @@
 									<button id="M-" class="mode">M-</button>
 									<button id="MS" class="mode">MS</button>
 									<button id="MR" class="mode">MR</button>
+									<button id="showMem" class="mode" >Show/Hide</button>
+
 								</div>
 							</li>
 							<li class="dropdown">
@@ -56,7 +59,7 @@
 						<p id="input" />
 					</div>
 
-					<div class="buttons">
+					<div id="buttonTableDiv" class="buttons">
 						<table class="buttonTable">
 							<tr>
 								<td><button class="func" value="sqr(" type="button">x<span class="corner">2</span></button></td>
@@ -111,13 +114,13 @@
 					</div>
 				</div>
 			</td>
-			<td class="historyColumn">
+			<td id="historyBox" class="historyColumn">
 				<div class="history">
 					HISTORY:
 					<p id="history"></p>
 				</div>
 			</td>
-			<td class="memoryColumn">
+			<td id="memBox" class="memoryColumn">
 				<div class="memory">
 					MEMORY
 					<p id="memory"></p>
