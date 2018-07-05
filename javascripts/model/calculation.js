@@ -1,5 +1,6 @@
 // Created by Bin Chen in 7/1/2018
 // Implemented by Bin Chen 7/2/2018
+// Modified by Houyi Fan 7/4/2018 - added functionanlity of most function buttons
 
 function Calculation() {
 }

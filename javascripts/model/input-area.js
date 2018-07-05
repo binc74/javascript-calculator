@@ -146,6 +146,11 @@ InputArea.prototype.addFunction = function (func) {
 	this.finalArea.addRightParen();
 };
 
+/**
+ * clear the input area
+ *
+ * @author Houyi Fan
+ */
 InputArea.prototype.clearInputArea = function () {
 	this.data = "";	
 	this.hasPeriod = false;	
@@ -165,9 +170,10 @@ InputArea.prototype.setPi = function () {
 /**
  * Remove a digit.
  * @author Jeb Alawi
+ * Modified by Houyi Fan 7/5/2018 - fix a syntax error
  */
 InputArea.prototype.remove = function () {
-	if (this.data.ength == 0)
+	if (this.data.length == 0)
 		this.isNegative = false;
 	else
 		this.data = this.data.slice(0,this.data.length-1);

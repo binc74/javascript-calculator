@@ -2,6 +2,7 @@
 // Modified by Bin Chen 6/28/2018 - Implemented registerNumButtons function
 // Modified by Bin Chen 6/29/2018 - Implemented registerOpButtons function
 // Modified by Jeb Alawi 7/4/2018 - added pi and back global functions
+// Modified by Houyi Fan 7/4/2018 - added equals, C and CE global functions
 
 // Controller for the calculator
 

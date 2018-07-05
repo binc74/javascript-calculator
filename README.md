@@ -97,4 +97,4 @@ Implemented back button and some functions
 
 Bin Chen: Implement the calculation part, design the object layout and the impplementation of the MS style scientific calculator
 
-Houyi Fan: 
+Houyi Fan: Implemented most function buttons. Attempted to add the function of letting user come back to history calculations by clicking the item in history, but failed. Added test files for this project

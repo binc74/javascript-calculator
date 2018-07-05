@@ -246,11 +246,21 @@ CalculatorModel.prototype.submit = function () {
 	this.history.add(expression, answer);
 };
 
+/**
+ * Clear both input area and final area
+ *
+ * @author Houyi Fan
+ */
 CalculatorModel.prototype.clear = function () {
 	this.inputArea.clearInputArea();
 	this.finalArea.clearFinalArea();
 };
 
+/**
+ * Clear the input area
+ *
+ * @author Houyi Fan
+ */
 CalculatorModel.prototype.clearInputArea = function () {
 	this.inputArea.clearInputArea();
 };

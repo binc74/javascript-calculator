@@ -1,7 +1,7 @@
 // Created by Bin Chen 6/29/2018
 // Implemented by Bin Chen 6/29/2018 - Implement finalArea and its four prototype functions, implement parts of calculation
 // Implemented by Bin Chen 7/2/2018 - merge the stagingArea into the FinalArea
-
+// Modified by Houyi Fan 7/5/2018 - add clearFinalArea function
 
 function FinalArea() {
 	this.data = [];
@@ -248,6 +248,11 @@ FinalArea.prototype.submit = function () {
 	return res;
 };
 
+/**
+ * Clear the final area
+ *
+ * @author Houyi Fan
+ */
 FinalArea.prototype.clearFinalArea = function () {
 	this.data = [];
 	this.pendingOperator = null;
